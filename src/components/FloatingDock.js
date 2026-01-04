@@ -69,15 +69,15 @@ export default function FloatingDock() {
     };
 
     return (
-        <div className="fixed bottom-6 inset-x-0 z-50 flex justify-center pointer-events-none">
+        <div className="fixed bottom-6 inset-x-0 z-50 flex justify-center pointer-events-none px-4">
             <motion.div
                 initial={{ y: 100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                className="glass p-1.5 rounded-[1.8rem] border border-white/10 shadow-2xl flex items-center gap-3 pointer-events-auto bg-black/40 backdrop-blur-2xl"
+                className="w-max p-2 rounded-full border z-50 pointer-events-auto relative mx-auto flex items-center px-1.5 bg-background/80 backdrop-blur-xl [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)] transform-gpu dark:border-white/10 dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]"
             >
                 {links.map((link) => {
                     if (link.type === 'divider') {
-                        return <div key={link.id} className="w-px h-5 bg-white/5 mx-1" />;
+                        return <div key={link.id} className="shrink-0 bg-white/10 w-[1px] h-6 mx-2" />;
                     }
 
                     const isActive = activeSection === link.id;
@@ -88,29 +88,31 @@ export default function FloatingDock() {
                     }
 
                     return (
-                        <div key={link.id} className="relative">
+                        <div key={link.id} className="relative flex aspect-square items-center justify-center rounded-full" style={{ width: '48px' }}>
                             <button
                                 onMouseEnter={() => setHoveredId(link.id)}
                                 onMouseLeave={() => setHoveredId(null)}
                                 onClick={() => handleClick(link)}
                                 className={cn(
-                                    "p-2.5 rounded-2xl transition-all duration-300 relative group",
-                                    isActive ? "bg-white text-black shadow-lg scale-105" : "text-foreground/30 hover:text-foreground hover:bg-white/5"
+                                    "flex items-center justify-center rounded-full transition-all duration-300 relative group size-10",
+                                    isActive
+                                        ? "bg-foreground text-background shadow-lg"
+                                        : "text-foreground/40 hover:text-foreground hover:bg-white/5"
                                 )}
                             >
-                                <Icon size={20} strokeWidth={isActive ? 2.5 : 2} />
+                                <Icon size={18} strokeWidth={isActive ? 2.5 : 2} />
 
                                 {/* Tooltip */}
                                 <AnimatePresence>
                                     {hoveredId === link.id && (
                                         <motion.div
-                                            initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                                            animate={{ opacity: 1, y: -45, scale: 1 }}
-                                            exit={{ opacity: 0, y: 10, scale: 0.9 }}
-                                            className="absolute left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-lg bg-white text-black text-[10px] font-mono tracking-widest uppercase pointer-events-none whitespace-nowrap shadow-xl"
+                                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                            animate={{ opacity: 1, y: -55, scale: 1 }}
+                                            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                            className="absolute left-1/2 -translate-x-1/2 px-4 py-2 rounded-xl bg-foreground text-background text-[10px] font-mono tracking-[0.2em] uppercase pointer-events-none whitespace-nowrap shadow-2xl border border-white/10"
                                         >
                                             {link.name}
-                                            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white rotate-45" />
+                                            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-foreground rotate-45" />
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
