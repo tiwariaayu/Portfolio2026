@@ -1,13 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --background: #030712;
-  --foreground: #f9fafb;
-  --accent: #3b82f6;
-  --accent-foreground: #ffffff;
-  --card: #111827;
-  --card-foreground: #f9fafb;
-  --border: #1f2937;
+  --background: #11120d;
+  --foreground: #fffbf4;
+  --accent: #d8cfbc;
+  --accent-foreground: #11120d;
+  --card: #565449;
+  --card-foreground: #fffbf4;
+  --border: rgba(216, 207, 188, 0.15);
+}
+
+.light {
+  --background: #fffbf4;
+  --foreground: #11120d;
+  --accent: #565449;
+  --accent-foreground: #fffbf4;
+  --card: #d8cfbc;
+  --card-foreground: #11120d;
+  --border: rgba(17, 18, 13, 0.1);
 }
 
 @theme inline {
@@ -24,6 +34,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 html,
@@ -34,6 +45,26 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Noise Texture */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 50;
+  filter: contrast(120%) brightness(120%);
+}
+
+.text-balance {
+  text-wrap: balance;
 }
 
 a {
@@ -41,9 +72,38 @@ a {
   text-decoration: none;
 }
 
+/* Premium Animations */
+@keyframes reveal {
+  from {
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(20px);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+    transform: translateY(0);
+  }
+}
+
+.animate-reveal {
+  animation: reveal 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.glass {
+  background: rgba(86, 84, 73, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+}
+
+.hover-trigger:hover .hover-target {
+  transform: translateY(-5px);
+  color: var(--accent);
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -51,27 +111,6 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #374151;
-}
-
-/* Premium Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
-}
-
-.glass {
-  background: rgba(17, 24, 39, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--card);
+  border-radius: 10px;
 }
