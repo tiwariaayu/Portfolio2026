@@ -12,12 +12,6 @@ export default function Footer() {
         <footer id="contact" className="w-full max-w-3xl mx-auto pt-32 pb-12 space-y-24 border-t border-border/10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div className="space-y-6">
-                    <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.5)]" />
-                        <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-foreground/70">
-                            Available for freelance / consulting
-                        </span>
-                    </div>
                     <h2 className="text-3xl md:text-5xl font-medium tracking-tighter">
                         Let's build the <span className="text-accent italic">future</span> together.
                     </h2>

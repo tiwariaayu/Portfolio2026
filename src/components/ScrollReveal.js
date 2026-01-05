@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export function Reveal({ children, delay = 0, width = "fit-content", className }) {
+export function Reveal({ children, delay = 0, width = "fit-content", className, margin = "-50px" }) {
     return (
         <div style={{ position: "relative", width, overflow: "hidden" }} className={className}>
             <motion.div
@@ -13,7 +13,7 @@ export function Reveal({ children, delay = 0, width = "fit-content", className }
                 }}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin }}
                 transition={{ duration: 0.8, delay, ease: [0.19, 1, 0.22, 1] }}
             >
                 {children}

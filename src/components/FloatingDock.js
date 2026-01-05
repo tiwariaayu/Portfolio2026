@@ -2,12 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Briefcase, Github, Linkedin, Twitter, Sun, Moon } from 'lucide-react';
+import { Home, Briefcase, Github, Linkedin, Twitter, Sun, Moon, Trophy } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const links = [
     { id: 'intro', name: 'Home', icon: Home, type: 'scroll' },
     { id: 'work', name: 'Projects', icon: Briefcase, type: 'scroll' },
+    { id: 'achievements', name: 'Achievements', icon: Trophy, type: 'scroll' },
     { id: 'divider-1', type: 'divider' },
     { id: 'github', name: 'GitHub', icon: Github, type: 'external', url: 'https://github.com/tiwariaayu' },
     { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, type: 'external', url: 'https://linkedin.com/in/tiwariaayu' },
@@ -37,7 +38,7 @@ export default function FloatingDock() {
             { threshold: 0.5 }
         );
 
-        ['intro', 'work', 'experience'].forEach((id) => {
+        ['intro', 'work', 'experience', 'achievements'].forEach((id) => {
             const el = document.getElementById(id);
             if (el) observer.observe(el);
         });
