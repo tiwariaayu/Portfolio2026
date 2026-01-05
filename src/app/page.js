@@ -6,6 +6,7 @@ import FloatingDock from "@/components/FloatingDock";
 import TechStack from "@/components/TechStack";
 import { Reveal, StaggerContainer, StaggerItem } from "@/components/ScrollReveal";
 import Image from "next/image";
+import SectionDivider from "@/components/SectionDivider";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
 import { ExternalLink, X, ChevronLeft, ChevronRight, Image as ImageIcon } from "lucide-react";
@@ -190,7 +191,7 @@ export default function Home() {
           </StaggerContainer>
         </section>
 
-        <div className="w-full h-px bg-border/50" />
+        <SectionDivider label="PRT_AUTO_XP" />
 
         {/* Experience Section */}
         <section id="experience" className="space-y-16 py-12">
@@ -218,7 +219,7 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="w-full h-px bg-border/50" />
+        <SectionDivider label="SYS_STK_V2" />
 
         {/* Skills Section */}
         <section id="skills" className="space-y-16 py-12">
@@ -247,7 +248,7 @@ export default function Home() {
           </StaggerContainer>
         </section>
 
-        <div className="w-full h-px bg-border/50" />
+        <SectionDivider label="ARC_WKS_FTR" />
 
         {/* Projects Section */}
         <section id="work" className="space-y-16 py-12">
