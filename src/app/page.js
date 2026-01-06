@@ -11,6 +11,17 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
 import { ExternalLink, X, ChevronLeft, ChevronRight, Image as ImageIcon } from "lucide-react";
 
+// Static Image Imports
+import imgFace from "../assets/images/facecutouut.jpg";
+import imgGrastech from "../assets/images/Grastech_Ayushman.jpg";
+import imgExpo from "../assets/images/expo2025.jpg";
+import imgKrishakBanner from "../assets/images/krishak_banner.jpg";
+import imgKrishak2 from "../assets/images/krishak2.jpg";
+import imgKrishak3 from "../assets/images/krishak3.jpg";
+import imgNationalSeminar from "../assets/images/national_seminar.jpg";
+import imgSeminar from "../assets/images/seminar.jpg";
+import imgSeminar2 from "../assets/images/semnar2.jpg";
+
 export default function Home() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -156,10 +167,13 @@ export default function Home() {
                       style={{ scale: smoothScale }}
                     >
                       <Image
-                        src="/facecutouut.JPG"
+                        src={imgFace}
                         alt="Ayushman"
                         fill
                         className="object-cover grayscale"
+                        placeholder="blur"
+                        sizes="(max-width: 768px) 100px, 150px"
+                        priority
                       />
                     </motion.div>
 
@@ -173,10 +187,13 @@ export default function Home() {
                       }}
                     >
                       <Image
-                        src="/facecutouut.JPG"
+                        src={imgFace}
                         alt="Ayushman Color"
                         fill
                         className="object-cover"
+                        placeholder="blur"
+                        sizes="(max-width: 768px) 100px, 150px"
+                        priority
                       />
                     </motion.div>
                   </div>
@@ -310,7 +327,7 @@ export default function Home() {
                 org: "Grastech Noida",
                 date: "March 2025 — May 2025",
                 desc: "Comprehensive certification covering advanced MongoDB, Express.js, React, Node.js and cross-platform mobile development with React Native.",
-                images: ["/Grastech_Ayushman.jpg"],
+                images: [imgGrastech],
                 showCollage: true
               },
               {
@@ -318,7 +335,7 @@ export default function Home() {
                 org: "Krishak Project",
                 date: "June 2025",
                 desc: "Handled the complete website creation and architecture for 'Krishak', a smart agriculture platform. Showcased at the 2025 Software Expo.",
-                images: ["/expo2025.jpg", "/krishak banner.jpg", "/krishak2.jpg", "/krishak3.jpg"],
+                images: [imgExpo, imgKrishakBanner, imgKrishak2, imgKrishak3],
                 showCollage: true
               },
               {
@@ -326,7 +343,7 @@ export default function Home() {
                 org: "Academic Presentation",
                 date: "July 2025",
                 desc: "Presented research and technical implementation details at the 2025 National Seminar on Smart Technology.",
-                images: ["/national seminar.jpg", "/seminar.jpg", "/semnar2.jpg"],
+                images: [imgNationalSeminar, imgSeminar, imgSeminar2],
                 showCollage: true
               }
             ].map((ach, i) => (
@@ -426,6 +443,8 @@ export default function Home() {
                                     alt="Achievement item"
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover/img:scale-110"
+                                    placeholder="blur"
+                                    sizes="256px"
                                   />
                                   <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
                                     <ImageIcon className="text-background" size={24} />
@@ -453,6 +472,8 @@ export default function Home() {
                                 alt="Achievement item"
                                 fill
                                 className="object-cover transition-transform duration-500 group-hover/img:scale-105"
+                                placeholder="blur"
+                                sizes="(max-width: 768px) 100vw, 384px"
                               />
                               <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
                                 <ImageIcon className="text-background" size={24} />
@@ -538,7 +559,8 @@ export default function Home() {
                       alt={`Gallery image ${currentImageIndex + 1}`}
                       fill
                       className="object-contain p-4 md:p-12"
-                      priority
+                      placeholder="blur"
+                      sizes="(max-width: 1280px) 100vw, 1280px"
                     />
                   </motion.div>
                 </AnimatePresence>

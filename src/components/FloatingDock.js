@@ -25,7 +25,15 @@ export default function FloatingDock() {
     useEffect(() => {
         // Sync theme with document class
         const isLight = document.documentElement.classList.contains('light');
-        setTheme(isLight ? 'light' : 'dark');
+        const initialTheme = isLight ? 'light' : 'dark';
+        setTheme(initialTheme);
+
+        // Ensure class is correct on mount
+        if (initialTheme === 'light') {
+            document.documentElement.classList.add('light');
+        } else {
+            document.documentElement.classList.remove('light');
+        }
 
         const observer = new IntersectionObserver(
             (entries) => {
