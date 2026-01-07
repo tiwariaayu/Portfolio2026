@@ -36,7 +36,7 @@ export default function SectionDivider({ label = "SEC_PARTITION" }) {
 
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 0.4, y: 0 }}
+                        whileInView={{ opacity: 0.7, y: 0 }}
                         transition={{ delay: 0.5, duration: 0.8 }}
                         className="flex flex-col items-center"
                     >

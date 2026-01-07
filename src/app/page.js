@@ -73,7 +73,7 @@ export default function Home() {
             <div className="flex flex-col gap-1 items-start">
               <div className="w-8 h-px bg-accent/40" />
               <div className="w-4 h-px bg-accent/20" />
-              <div className="mt-4 font-mono text-[7px] tracking-widest opacity-30 uppercase">Scan_Initiated...</div>
+              <div className="mt-4 font-mono text-[7px] tracking-widest opacity-50 uppercase">Scan_Initiated...</div>
             </div>
           </StaggerItem>
           <StaggerItem>
@@ -155,8 +155,12 @@ export default function Home() {
                   {/* Decorative Glow Background */}
                   <div className="absolute -inset-1 bg-gradient-to-r from-accent/20 to-accent/0 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                  <div
-                    className="relative w-24 h-24 md:w-32 md:h-32 rounded-2xl overflow-hidden border border-accent/20 shadow-xl group-hover:border-accent/40 transition-colors duration-500 cursor-crosshair"
+                  <motion.div
+                    drag
+                    dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                    dragElastic={0.6}
+                    whileDrag={{ scale: 1.05, cursor: 'grabbing' }}
+                    className="relative w-24 h-24 md:w-32 md:h-32 rounded-2xl overflow-hidden border border-accent/20 shadow-xl group-hover:border-accent/40 transition-colors duration-500 cursor-grab active:cursor-grabbing z-20 select-none touch-none"
                     onMouseMove={handleMouseMove}
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
@@ -174,6 +178,7 @@ export default function Home() {
                         placeholder="blur"
                         sizes="(max-width: 768px) 100px, 150px"
                         priority
+                        draggable={false}
                       />
                     </motion.div>
 
@@ -194,14 +199,15 @@ export default function Home() {
                         placeholder="blur"
                         sizes="(max-width: 768px) 100px, 150px"
                         priority
+                        draggable={false}
                       />
                     </motion.div>
-                  </div>
+                  </motion.div>
                 </div>
               </div>
             </StaggerItem>
             <StaggerItem>
-              <p className="text-2xl md:text-3xl text-foreground/80 leading-tight font-light max-w-2xl mt-8">
+              <p className="text-xl md:text-2xl text-foreground/80 leading-tight font-light max-w-2xl mt-8">
                 A <span className="inline-block px-2 py-0.5 rounded-md bg-accent/5 border border-accent/20 text-[0.85em] text-accent font-medium shadow-[0_0_10px_rgba(216,207,188,0.02),inset_0_0_8px_rgba(216,207,188,0.1)] transition-all hover:bg-green-500/10 hover:border-green-500/30 hover:text-green-400 hover:shadow-[0_0_15px_rgba(34,197,94,0.2),inset_0_0_10px_rgba(34,197,94,0.15)] cursor-default mx-1 uppercase tracking-wider">Full Stack Developer</span> dedicated to building <span className="text-accent">Clean, Readable, and High-Performance</span> web experiences.
               </p>
             </StaggerItem>
@@ -229,7 +235,7 @@ export default function Home() {
                     <span className="font-mono text-[10px] opacity-40 whitespace-nowrap bg-white/5 px-2 py-1 rounded">{exp.year}</span>
                   </div>
                   <p className="text-xs text-accent font-medium uppercase tracking-[0.2em]">{exp.company}</p>
-                  <p className="text-foreground/60 leading-relaxed text-base max-w-xl font-light italic">{exp.desc}</p>
+                  <p className="text-foreground/80 leading-relaxed text-base max-w-xl font-light italic">{exp.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -588,6 +594,6 @@ export default function Home() {
           </div>
         </section>
       </div>
-    </main>
+    </main >
   );
 }
