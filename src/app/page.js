@@ -148,7 +148,7 @@ export default function Home() {
             <StaggerItem>
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-12 md:gap-20 mt-8">
                 <h1 className="text-5xl md:text-8xl font-semibold tracking-tighter leading-none whitespace-nowrap">
-                  I'm Ayushman
+                  Hey, I'm Ayushman
                 </h1>
 
                 <div className="relative group">
@@ -209,8 +209,15 @@ export default function Home() {
               </div>
             </StaggerItem>
             <StaggerItem>
-              <p className="text-xl md:text-2xl text-foreground/80 leading-tight font-light max-w-2xl mt-8">
-                A <span className="inline-block px-2 py-0.5 rounded-md bg-accent/5 border border-accent/20 text-[0.85em] text-accent font-medium shadow-[0_0_10px_rgba(216,207,188,0.02),inset_0_0_8px_rgba(216,207,188,0.1)] transition-all hover:bg-green-500/10 hover:border-green-500/30 hover:text-green-400 hover:shadow-[0_0_15px_rgba(34,197,94,0.2),inset_0_0_10px_rgba(34,197,94,0.15)] cursor-default mx-1 uppercase tracking-wider">Full Stack Developer</span> dedicated to building <span className="text-accent">Clean, Readable, and High-Performance</span> web experiences.
+              <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed font-light max-w-2xl mt-8" style={{ fontFamily: 'var(--font-hanken-grotesk)' }}>
+                A <motion.span 
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  className="relative inline-block px-2.5 py-1 rounded-md bg-accent/5 border border-accent/20 text-accent font-medium transition-all duration-300 hover:bg-accent/10 hover:border-accent/40 cursor-default group"
+                  style={{ fontFamily: 'var(--font-instrument-serif)' }}
+                >
+                  <span className="absolute -inset-0.5 rounded-md bg-accent/0 group-hover:bg-accent/10 blur-sm transition-all duration-300 -z-10"></span>
+                  Full Stack Developer
+                </motion.span> dedicated to building <span className="text-accent font-medium">Clean, Readable, and High-Performance</span> web experiences.
               </p>
             </StaggerItem>
           </StaggerContainer>
@@ -219,9 +226,9 @@ export default function Home() {
         <SectionDivider label="PRT_AUTO_XP" />
 
         {/* Experience Section */}
-        <section id="experience" className="space-y-16 py-12">
-          <Reveal>
-            <div className="flex flex-col items-center text-center mb-16">
+        <section id="experience" className="space-y-16 py-12 mt-20 mb-24">
+          <Reveal width="100%">
+            <div className="flex flex-col items-center justify-center text-center mb-20 w-full">
               <h2 className="text-4xl md:text-5xl font-medium tracking-tight">Experience</h2>
             </div>
           </Reveal>
@@ -236,7 +243,7 @@ export default function Home() {
                     <h3 className="text-3xl font-medium tracking-tight group-hover:text-accent transition-colors duration-500">{exp.role}</h3>
                     <span className="font-mono text-[10px] opacity-40 whitespace-nowrap bg-white/5 px-2 py-1 rounded">{exp.year}</span>
                   </div>
-                  <p className="text-xs text-accent font-medium uppercase tracking-[0.2em]">{exp.company}</p>
+                  <p className="text-xs text-accent font-medium uppercase tracking-[0.2em] font-mono">{exp.company}</p>
                   <p className="text-foreground/80 leading-relaxed text-base max-w-xl font-light italic">{exp.desc}</p>
                 </div>
               </Reveal>
@@ -247,41 +254,156 @@ export default function Home() {
         <SectionDivider label="SYS_STK_V2" />
 
         {/* Skills Section */}
-        <section id="skills" className="space-y-16 py-12">
-          <Reveal>
-            <div className="flex flex-col items-center text-center mb-12">
+        <section id="skills" className="space-y-16 py-12 mt-20 mb-24">
+          <Reveal width="100%">
+            <div className="flex flex-col items-center justify-center text-center mb-20 w-full">
               <h2 className="text-4xl md:text-5xl font-medium tracking-tight">Skills</h2>
             </div>
           </Reveal>
 
           <Reveal width="100%">
-            <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto mt-8">
-              {[
-                { name: "Java", icon: FaJava, color: "text-orange-500" },
-                { name: "JavaScript", icon: SiJavascript, color: "text-yellow-400" },
-                { name: "TypeScript", icon: SiTypescript, color: "text-blue-500" },
-                { name: "Node.js", icon: SiNodedotjs, color: "text-green-500" },
-                { name: "Express", icon: SiExpress, color: "text-foreground" },
-                { name: "React", icon: SiReact, color: "text-cyan-400" },
-                { name: "Next.js", icon: SiNextdotjs, color: "text-foreground" },
-                { name: "PHP", icon: SiPhp, color: "text-purple-400" },
-                { name: "Drupal", icon: SiDrupal, color: "text-blue-600" },
-                { name: "MongoDB", icon: SiMongodb, color: "text-green-500" },
-                { name: "SQL", icon: Database, color: "text-emerald-400" },
-                { name: "Supabase", icon: SiSupabase, color: "text-emerald-500" },
-                { name: "OAuth", icon: Shield, color: "text-rose-400" },
-                { name: "APIs", icon: Globe, color: "text-blue-400" }
-              ].map((skill) => (
-                <div
-                  key={skill.name}
-                  className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/5 border border-white/10 hover:border-accent/40 hover:bg-accent/5 transition-all group cursor-default backdrop-blur-sm hover:-translate-y-1"
-                >
-                  <skill.icon className={`text-xl ${skill.color} group-hover:scale-110 transition-transform`} />
-                  <span className="text-base font-medium text-foreground/90 group-hover:text-foreground transition-colors">
-                    {skill.name}
-                  </span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto mt-12 px-4">
+              <div className="space-y-10">
+                {/* Backend */}
+                <div className="space-y-5">
+                  <div className="flex items-center gap-3">
+                    <motion.div
+                      animate={{ opacity: [1, 0.3, 1] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      className="w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(216,207,188,0.6)]"
+                    />
+                    <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-foreground/50 font-medium">Backend</h3>
+                    <div className="flex-1 h-px bg-gradient-to-r from-accent/20 via-accent/10 to-transparent"></div>
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    {[
+                      { name: "Java", icon: FaJava, color: "text-orange-500" },
+                      { name: "JavaScript", icon: SiJavascript, color: "text-yellow-400" },
+                      { name: "TypeScript", icon: SiTypescript, color: "text-blue-500" },
+                      { name: "Node.js", icon: SiNodedotjs, color: "text-green-500" },
+                      { name: "Express", icon: SiExpress, color: "text-foreground" },
+                    ].map((skill) => (
+                      <motion.div
+                        key={skill.name}
+                        whileHover={{ y: -2, scale: 1.02 }}
+                        className="relative group"
+                      >
+                        <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-accent/30 hover:bg-accent/5 transition-all duration-300 cursor-default backdrop-blur-sm">
+                          <skill.icon className={`text-xl ${skill.color} group-hover:scale-110 transition-transform duration-300`} />
+                          <span className="text-sm font-medium text-foreground/80 group-hover:text-foreground transition-colors duration-300">
+                            {skill.name}
+                          </span>
+                        </div>
+                        <div className="absolute -inset-0.5 rounded-xl bg-accent/0 group-hover:bg-accent/10 blur-sm transition-all duration-300 -z-10"></div>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
-              ))}
+
+                {/* CMS */}
+                <div className="space-y-5">
+                  <div className="flex items-center gap-3">
+                    <motion.div
+                      animate={{ opacity: [1, 0.3, 1] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                      className="w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(216,207,188,0.6)]"
+                    />
+                    <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-foreground/50 font-medium">CMS</h3>
+                    <div className="flex-1 h-px bg-gradient-to-r from-accent/20 via-accent/10 to-transparent"></div>
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    {[
+                      { name: "PHP", icon: SiPhp, color: "text-purple-400" },
+                      { name: "Drupal", icon: SiDrupal, color: "text-blue-600" },
+                      { name: "OAuth", icon: Shield, color: "text-rose-400" },
+                    ].map((skill) => (
+                      <motion.div
+                        key={skill.name}
+                        whileHover={{ y: -2, scale: 1.02 }}
+                        className="relative group"
+                      >
+                        <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-accent/30 hover:bg-accent/5 transition-all duration-300 cursor-default backdrop-blur-sm">
+                          <skill.icon className={`text-xl ${skill.color} group-hover:scale-110 transition-transform duration-300`} />
+                          <span className="text-sm font-medium text-foreground/80 group-hover:text-foreground transition-colors duration-300">
+                            {skill.name}
+                          </span>
+                        </div>
+                        <div className="absolute -inset-0.5 rounded-xl bg-accent/0 group-hover:bg-accent/10 blur-sm transition-all duration-300 -z-10"></div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-10">
+                {/* Frontend */}
+                <div className="space-y-5">
+                  <div className="flex items-center gap-3">
+                    <motion.div
+                      animate={{ opacity: [1, 0.3, 1] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                      className="w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(216,207,188,0.6)]"
+                    />
+                    <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-foreground/50 font-medium">Frontend</h3>
+                    <div className="flex-1 h-px bg-gradient-to-r from-accent/20 via-accent/10 to-transparent"></div>
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    {[
+                      { name: "React", icon: SiReact, color: "text-cyan-400" },
+                      { name: "Next.js", icon: SiNextdotjs, color: "text-foreground" },
+                      { name: "APIs", icon: Globe, color: "text-blue-400" },
+                    ].map((skill) => (
+                      <motion.div
+                        key={skill.name}
+                        whileHover={{ y: -2, scale: 1.02 }}
+                        className="relative group"
+                      >
+                        <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-accent/30 hover:bg-accent/5 transition-all duration-300 cursor-default backdrop-blur-sm">
+                          <skill.icon className={`text-xl ${skill.color} group-hover:scale-110 transition-transform duration-300`} />
+                          <span className="text-sm font-medium text-foreground/80 group-hover:text-foreground transition-colors duration-300">
+                            {skill.name}
+                          </span>
+                        </div>
+                        <div className="absolute -inset-0.5 rounded-xl bg-accent/0 group-hover:bg-accent/10 blur-sm transition-all duration-300 -z-10"></div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Databases */}
+                <div className="space-y-5">
+                  <div className="flex items-center gap-3">
+                    <motion.div
+                      animate={{ opacity: [1, 0.3, 1] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                      className="w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(216,207,188,0.6)]"
+                    />
+                    <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-foreground/50 font-medium">Databases</h3>
+                    <div className="flex-1 h-px bg-gradient-to-r from-accent/20 via-accent/10 to-transparent"></div>
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    {[
+                      { name: "MongoDB", icon: SiMongodb, color: "text-green-500" },
+                      { name: "SQL", icon: Database, color: "text-emerald-400" },
+                      { name: "Supabase", icon: SiSupabase, color: "text-emerald-500" },
+                    ].map((skill) => (
+                      <motion.div
+                        key={skill.name}
+                        whileHover={{ y: -2, scale: 1.02 }}
+                        className="relative group"
+                      >
+                        <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-accent/30 hover:bg-accent/5 transition-all duration-300 cursor-default backdrop-blur-sm">
+                          <skill.icon className={`text-xl ${skill.color} group-hover:scale-110 transition-transform duration-300`} />
+                          <span className="text-sm font-medium text-foreground/80 group-hover:text-foreground transition-colors duration-300">
+                            {skill.name}
+                          </span>
+                        </div>
+                        <div className="absolute -inset-0.5 rounded-xl bg-accent/0 group-hover:bg-accent/10 blur-sm transition-all duration-300 -z-10"></div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </Reveal>
         </section>
@@ -289,59 +411,71 @@ export default function Home() {
         <SectionDivider label="ARC_WKS_FTR" />
 
         {/* Projects Section */}
-        <section id="work" className="space-y-16 py-12">
-          <Reveal>
-            <div className="flex flex-col items-center text-center mb-16">
+        <section id="work" className="space-y-16 py-12 mt-20 mb-24">
+          <Reveal width="100%">
+            <div className="flex flex-col items-center justify-center text-center mb-20 w-full">
               <h2 className="text-4xl md:text-5xl font-medium tracking-tight">Featured Work</h2>
             </div>
           </Reveal>
 
-          <div className="grid gap-0 border-t border-border/10">
+          <div className="grid gap-0">
             {[
               { id: "01", title: "Nebula Cloud Engine", type: "Core Architecture", tags: ["Next.js", "WebGL", "Rust"], desc: "A high-performance distributed rendering engine for real-time 3D visualizations." },
               { id: "02", title: "Minimal Design Framework", type: "Design System", tags: ["CSS", "A11y", "Tailwind"], desc: "An open-source library prioritizing reading speed and accessibility for information-dense sites." }
-            ].map((project, i) => (
-              <Reveal key={i} delay={i * 0.1}>
-                <div className="group border-b border-border/10 py-12 cursor-pointer transition-all hover:bg-white/[0.02]">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 px-4">
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-4">
-                        <span className="font-mono text-[10px] text-accent opacity-50 tracking-widest">{project.id}</span>
-                        <span className="text-[9px] font-mono uppercase tracking-[0.2em] opacity-30">{project.type}</span>
+            ].map((project, i, arr) => (
+              <div key={i}>
+                <Reveal delay={i * 0.1}>
+                  <div className="group space-y-6 pb-16">
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+                      <div className="space-y-4 flex-1">
+                        <div className="flex items-center gap-4">
+                          <span className="font-mono text-[10px] text-accent opacity-60 tracking-widest">{project.id}</span>
+                          <span className="text-[9px] font-mono uppercase tracking-[0.2em] opacity-30">{project.type}</span>
+                        </div>
+                        <h3 className="text-3xl md:text-4xl font-medium tracking-tight group-hover:text-accent transition-colors duration-500">
+                          {project.title}
+                        </h3>
                       </div>
-                      <h3 className="text-4xl md:text-5xl font-medium tracking-tight group-hover:text-accent transition-all duration-500 group-hover:translate-x-2">
-                        {project.title}
-                      </h3>
+                      <ExternalLink className="w-5 h-5 text-foreground/20 group-hover:text-accent transition-colors duration-500 shrink-0 mt-2" />
                     </div>
+                    
+                    <p className="text-foreground/70 leading-relaxed text-base max-w-2xl font-light">
+                      {project.desc}
+                    </p>
 
-                    <div className="md:text-right space-y-4">
-                      <div className="flex flex-wrap md:justify-end gap-2">
-                        {project.tags.map(tag => (
-                          <span key={tag} className="text-[9px] font-mono py-1 px-2 rounded-full border border-white/10 opacity-40">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      <p className="text-foreground/40 text-[13px] leading-relaxed max-w-xs md:ml-auto">
-                        {project.desc}
-                      </p>
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {project.tags.map(tag => (
+                        <span key={tag} className="text-[9px] font-mono py-1.5 px-3 rounded-md border border-white/10 bg-white/5 text-foreground/50 hover:border-accent/20 hover:text-foreground/70 transition-all duration-300">
+                          {tag}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                </div>
-              </Reveal>
+                </Reveal>
+                {i < arr.length - 1 && (
+                  <motion.div
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="h-px bg-gradient-to-r from-transparent via-border/30 to-transparent mb-16"
+                    style={{ transformOrigin: "left" }}
+                  />
+                )}
+              </div>
             ))}
           </div>
         </section>
 
         {/* Achievements Section */}
-        <section id="achievements" className="space-y-16 py-12">
-          <Reveal>
-            <div className="flex flex-col items-center text-center mb-16">
+        <section id="achievements" className="space-y-16 py-12 mt-20 mb-24">
+          <Reveal width="100%">
+            <div className="flex flex-col items-center justify-center text-center mb-20 w-full">
               <h2 className="text-4xl md:text-5xl font-medium tracking-tight">Achievements</h2>
             </div>
           </Reveal>
 
-          <div className="grid gap-12 mt-8">
+          <div className="grid gap-0 mt-8">
             {[
               {
                 title: "MERN stack + React Native completion",
@@ -367,26 +501,32 @@ export default function Home() {
                 images: [imgNationalSeminar, imgSeminar, imgSeminar2],
                 showCollage: true
               }
-            ].map((ach, i) => (
-              <Reveal key={i} delay={i * 0.1}>
-                <div
-                  ref={el => achievementRefs.current[i] = el}
-                  onMouseEnter={() => {
-                    if (ach.showCollage) {
-                      setExpandedAchievementIdx(i);
-                      setIsClickTriggered(false);
-                    }
-                  }}
-                  onMouseLeave={() => {
-                    if (ach.showCollage) {
-                      setExpandedAchievementIdx(null);
-                    }
-                  }}
-                  className="group relative pl-8 border-l border-border/20 hover:border-accent/40 transition-colors duration-500"
-                >
+            ].map((ach, i, arr) => (
+              <div key={i}>
+                <Reveal delay={i * 0.1}>
+                  <div
+                    ref={el => achievementRefs.current[i] = el}
+                    onMouseEnter={() => {
+                      if (ach.showCollage) {
+                        setExpandedAchievementIdx(i);
+                        setIsClickTriggered(false);
+                      }
+                    }}
+                    onMouseLeave={() => {
+                      if (ach.showCollage) {
+                        setExpandedAchievementIdx(null);
+                      }
+                    }}
+                    className="group relative pl-8 border-l border-border/20 hover:border-accent/40 transition-colors duration-500 pb-12"
+                  >
                   <div className="absolute left-0 top-0 w-2 h-px bg-accent/40 -translate-x-full" />
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
                     <div className="flex items-center gap-3">
+                      <motion.div
+                        animate={{ opacity: [1, 0.3, 1] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
+                        className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)] shrink-0"
+                      />
                       <h3 className="text-2xl font-medium tracking-tight group-hover:text-accent transition-colors duration-500">
                         {ach.title}
                       </h3>
@@ -415,7 +555,7 @@ export default function Home() {
                       {ach.date}
                     </span>
                   </div>
-                  <p className="text-xs text-accent/60 font-medium uppercase tracking-[0.2em] mb-3">{ach.org}</p>
+                  <p className="text-xs text-accent/60 font-medium uppercase tracking-[0.2em] mb-3 font-mono">{ach.org}</p>
                   <p className="text-foreground/60 leading-relaxed text-sm max-w-2xl font-light italic mb-2">
                     {ach.desc}
                   </p>
@@ -505,8 +645,19 @@ export default function Home() {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </div>
-              </Reveal>
+                  </div>
+                </Reveal>
+                {i < arr.length - 1 && (
+                  <motion.div
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="h-px bg-gradient-to-r from-transparent via-border/30 to-transparent mb-12 ml-8"
+                    style={{ transformOrigin: "left" }}
+                  />
+                )}
+              </div>
             ))}
           </div>
         </section>

@@ -114,7 +114,7 @@ body {
   overflow-x: hidden;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-hanken-grotesk), system-ui, -apple-system, sans-serif;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
 }
@@ -217,5 +217,30 @@ a {
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Main title - Instrument Serif for elegance */
+  h1 {
+    font-family: var(--font-instrument-serif), serif;
+  }
+
+  /* Section headings - Hanken Grotesk for modern look */
+  h2 {
+    font-family: var(--font-hanken-grotesk), sans-serif;
+  }
+
+  /* Subheadings - Instrument Serif for contrast */
+  h3 {
+    font-family: var(--font-instrument-serif), serif;
+  }
+
+  /* Monospace elements - Space Mono */
+  .font-mono {
+    font-family: var(--font-space-mono), monospace;
+  }
+
+  /* Body text - Hanken Grotesk */
+  p, span, div {
+    font-family: var(--font-hanken-grotesk), sans-serif;
   }
 }
