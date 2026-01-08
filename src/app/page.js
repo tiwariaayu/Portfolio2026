@@ -9,7 +9,9 @@ import Image from "next/image";
 import SectionDivider from "@/components/SectionDivider";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
-import { ExternalLink, X, ChevronLeft, ChevronRight, Image as ImageIcon } from "lucide-react";
+import { ExternalLink, X, ChevronLeft, ChevronRight, Image as ImageIcon, Database, Shield, Globe } from "lucide-react";
+import { SiJavascript, SiTypescript, SiNodedotjs, SiExpress, SiReact, SiNextdotjs, SiPhp, SiDrupal, SiMongodb, SiSupabase } from "react-icons/si";
+import { FaJava } from "react-icons/fa";
 
 // Static Image Imports
 import imgFace from "../assets/images/facecutouut.jpg";
@@ -247,28 +249,41 @@ export default function Home() {
         {/* Skills Section */}
         <section id="skills" className="space-y-16 py-12">
           <Reveal>
-            <div className="flex flex-col items-center text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-medium tracking-tight">Tech Stack</h2>
+            <div className="flex flex-col items-center text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-medium tracking-tight">Skills</h2>
             </div>
           </Reveal>
 
-          <StaggerContainer delayChildren={0.4} staggerBy={0.05} className="flex flex-wrap justify-center gap-4 mt-8">
-            {[
-              "Java", "JavaScript", "PHP", "React", "Drupal",
-              "Next.js", "MongoDB", "SQL", "Supabase"
-            ].map((skill) => (
-              <StaggerItem key={skill}>
-                <motion.div
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  className="px-6 py-3 rounded-2xl bg-border/20 border border-border/50 hover:border-accent/40 hover:bg-accent/5 transition-all group cursor-default"
+          <Reveal width="100%">
+            <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto mt-8">
+              {[
+                { name: "Java", icon: FaJava, color: "text-orange-500" },
+                { name: "JavaScript", icon: SiJavascript, color: "text-yellow-400" },
+                { name: "TypeScript", icon: SiTypescript, color: "text-blue-500" },
+                { name: "Node.js", icon: SiNodedotjs, color: "text-green-500" },
+                { name: "Express", icon: SiExpress, color: "text-foreground" },
+                { name: "React", icon: SiReact, color: "text-cyan-400" },
+                { name: "Next.js", icon: SiNextdotjs, color: "text-foreground" },
+                { name: "PHP", icon: SiPhp, color: "text-purple-400" },
+                { name: "Drupal", icon: SiDrupal, color: "text-blue-600" },
+                { name: "MongoDB", icon: SiMongodb, color: "text-green-500" },
+                { name: "SQL", icon: Database, color: "text-emerald-400" },
+                { name: "Supabase", icon: SiSupabase, color: "text-emerald-500" },
+                { name: "OAuth", icon: Shield, color: "text-rose-400" },
+                { name: "APIs", icon: Globe, color: "text-blue-400" }
+              ].map((skill) => (
+                <div
+                  key={skill.name}
+                  className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/5 border border-white/10 hover:border-accent/40 hover:bg-accent/5 transition-all group cursor-default backdrop-blur-sm hover:-translate-y-1"
                 >
-                  <span className="text-lg md:text-xl font-medium text-foreground group-hover:text-accent transition-colors">
-                    {skill}
+                  <skill.icon className={`text-xl ${skill.color} group-hover:scale-110 transition-transform`} />
+                  <span className="text-base font-medium text-foreground/90 group-hover:text-foreground transition-colors">
+                    {skill.name}
                   </span>
-                </motion.div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </section>
 
         <SectionDivider label="ARC_WKS_FTR" />
@@ -578,7 +593,7 @@ export default function Home() {
         <Footer />
 
         {/* Motivational Section */}
-        <section className="py-32 px-4 relative">
+        <section className="pt-32 pb-56 px-4 relative">
           <div className="max-w-4xl mx-auto">
             <Reveal margin="0px" transition={{ duration: 0.8, ease: "easeOut" }}>
               <div className="relative group p-12 rounded-[2rem] border border-white/5 bg-white/[0.01] backdrop-blur-sm overflow-hidden text-center">
