@@ -2,9 +2,9 @@
 
 import { motion } from "framer-motion";
 
-export default function SectionDivider({ label = "SEC_PARTITION" }) {
+export default function SectionDivider({ label = "SEC_PARTITION", style }) {
     return (
-        <div className="relative w-full py-24 flex items-center justify-center overflow-hidden pointer-events-none select-none">
+        <div className="relative w-full py-24 flex items-center justify-center overflow-hidden pointer-events-none select-none" style={style}>
             {/* Background Glow */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent blur-3xl opacity-30" />
 
