@@ -3,60 +3,74 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Globe, ArrowUpRight } from 'lucide-react';
+import { SiWhatsapp } from "react-icons/si";
 import { cn } from '@/lib/utils';
+
+import styles from './Footer.module.css';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer id="contact" className="w-full max-w-3xl mx-auto pt-32 pb-12 space-y-24 border-t border-border/10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div className="space-y-6">
-                    <h2 className="text-3xl md:text-5xl font-medium tracking-tighter">
-                        Let's build the <span className="text-accent italic">future</span> together.
-                    </h2>
-                    <p className="text-foreground/50 text-sm leading-relaxed max-w-xs">
-                        Based in India • IST Timezone (UTC+5:30)
+        <footer id="contact" className="w-full max-w-4xl mx-auto pt-40 pb-32 px-6">
+            <div className="flex flex-col items-center justify-center text-center space-y-12 mb-32">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="flex flex-col items-center space-y-8"
+                >
+                    <p className="text-[#e9204f] text-lg md:text-xl font-semibold">
+                        Have a project in mind?
                     </p>
-                </div>
 
-                <div className="flex flex-col justify-end gap-8">
-                    <div className="flex gap-12">
+                    <div className="flex flex-col md:flex-row items-center gap-6">
                         <a
-                            href="mailto:ayushmantiwari@example.com"
-                            className="group flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-foreground/40 hover:text-accent transition-all hover:bg-accent/5 px-4 py-2 rounded-full border border-transparent hover:border-accent/10"
+                            href="https://wa.me/918252577379"
+                            target="_blank"
+                            className={cn(
+                                "group relative inline-flex items-center justify-center bg-white/5 backdrop-blur-md border border-[#e9204f] text-foreground rounded-lg font-medium text-base transition-all duration-300 hover:bg-accent/10 hover:border-accent/50 hover:text-accent hover:scale-105 hover:shadow-[0_0_30px_rgba(216,207,188,0.2)] active:scale-95 gap-3",
+                                styles.ctaButton
+                            )}
                         >
-                            <Mail size={14} className="group-hover:scale-110 transition-transform" />
-                            Email
+                            <SiWhatsapp className="w-4 h-4 text-[#25D366] transition-transform duration-300 group-hover:scale-110" />
+                            <span>Start a conversation</span>
                         </a>
-                        <div className="space-y-4">
+
+                        <div className="flex items-center gap-4">
                             <a
                                 href="https://github.com/tiwariaayu"
                                 target="_blank"
-                                className="group flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-foreground/30 hover:text-foreground transition-colors"
+                                className="p-4 rounded-lg bg-white/5 border border-white/15 text-foreground/70 hover:text-foreground hover:bg-white/10 hover:border-white/20 transition-all duration-300 group"
+                                aria-label="GitHub"
                             >
-                                <Github size={12} />
-                                Github <ArrowUpRight size={10} className="opacity-0 group-hover:opacity-100 -translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-all" />
+                                <Github size={18} className="text-foreground transition-transform duration-300 group-hover:scale-110" />
                             </a>
                             <a
                                 href="https://linkedin.com"
                                 target="_blank"
-                                className="group flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-foreground/30 hover:text-foreground transition-colors"
+                                className="p-4 rounded-lg bg-white/5 border border-white/15 text-foreground/70 hover:text-foreground hover:bg-white/10 hover:border-white/20 transition-all duration-300 group"
+                                aria-label="LinkedIn"
                             >
-                                <Linkedin size={12} />
-                                LinkedIn <ArrowUpRight size={10} className="opacity-0 group-hover:opacity-100 -translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-all" />
+                                <Linkedin size={18} className="text-[#0A66C2] transition-transform duration-300 group-hover:scale-110" />
                             </a>
                         </div>
                     </div>
-                </div>
+
+                    <p className="text-foreground/50 text-base md:text-lg max-w-lg mx-auto font-light leading-relaxed">
+                        Let's turn your ideas into reality.<br className="hidden md:block" />
+                        Based in India • IST Timezone (UTC+5:30)
+                    </p>
+
+                    <h2 className="text-5xl md:text-8xl font-bold tracking-tight leading-[0.9] text-balance pt-8" style={{ fontFamily: 'var(--font-outfit)' }}>
+                        Let's build the <br />
+                        <span className="text-accent italic font-light ml-2" style={{ fontFamily: 'var(--font-instrument-serif)' }}>future</span> together.
+                    </h2>
+                </motion.div>
             </div>
 
             <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-12 border-t border-border/5">
-                <div className="flex items-center gap-4 text-foreground/20 font-mono text-[9px] uppercase tracking-[0.4em]">
-                    <span>© {currentYear} Ayushman Tiwari</span>
-                    <span className="h-4 w-px bg-border/20" />
-                    <span>Built with Next.js 15</span>
-                </div>
+                <div></div>
 
                 <button
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

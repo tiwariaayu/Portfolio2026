@@ -109,19 +109,25 @@ export default function FloatingDock() {
                                         : "text-foreground/40 hover:text-foreground hover:bg-white/5"
                                 )}
                             >
-                                <Icon size={18} strokeWidth={isActive ? 2.5 : 2} />
+                                <motion.div
+                                    whileHover={{ scale: 1.2, rotate: 5 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                    className="flex items-center justify-center"
+                                >
+                                    <Icon size={18} strokeWidth={isActive ? 2.5 : 2} />
+                                </motion.div>
 
                                 {/* Tooltip */}
                                 <AnimatePresence>
                                     {hoveredId === link.id && (
                                         <motion.div
                                             initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                                            animate={{ opacity: 1, y: -55, scale: 1 }}
+                                            animate={{ opacity: 1, y: -50, scale: 1 }}
                                             exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                            className="absolute left-1/2 -translate-x-1/2 px-4 py-2 rounded-xl bg-foreground text-background text-[10px] font-mono tracking-[0.2em] uppercase pointer-events-none whitespace-nowrap shadow-2xl border border-white/10"
+                                            className="absolute left-1/2 -translate-x-1/2 px-6 py-3 rounded-xl bg-foreground text-background text-[10px] font-mono tracking-[0.2em] uppercase pointer-events-none whitespace-nowrap shadow-2xl border border-white/10"
                                         >
                                             {link.name}
-                                            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-foreground rotate-45" />
                                         </motion.div>
                                     )}
                                 </AnimatePresence>

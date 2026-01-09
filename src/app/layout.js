@@ -1,4 +1,4 @@
-import { Instrument_Serif, Space_Mono, Hanken_Grotesk } from "next/font/google";
+import { Instrument_Serif, Space_Mono, Hanken_Grotesk, Outfit, Syne } from "next/font/google";
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -19,6 +19,18 @@ const hankenGrotesk = Hanken_Grotesk({
   weight: ["300", "400", "500", "600", "700"],
 });
 
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const syne = Syne({
+  variable: "--font-syne",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
+
 export const metadata = {
   title: "Ayu's Portfolio 2026",
   description: "Modern professional portfolio built with Next.js 15",
@@ -28,7 +40,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${instrumentSerif.variable} ${spaceMono.variable} ${hankenGrotesk.variable} antialiased`}
+        className={`${instrumentSerif.variable} ${spaceMono.variable} ${hankenGrotesk.variable} ${outfit.variable} ${syne.variable} antialiased`}
       >
         {children}
       </body>

@@ -140,7 +140,7 @@ export default function Home() {
       <div className="w-full max-w-3xl px-6 md:px-0 py-32 space-y-32 z-10">
 
         {/* Intro Section */}
-        <section id="intro" className="pt-20 space-y-8">
+        <section id="intro" className="pt-20 space-y-8 mb-32">
           <StaggerContainer delayChildren={0.2} staggerBy={0.1}>
             <StaggerItem>
               <span className="text-accent font-mono text-xs font-bold uppercase tracking-[0.4em] border-l-2 border-accent pl-6 py-2">Introduction</span>
@@ -210,7 +210,7 @@ export default function Home() {
             </StaggerItem>
             <StaggerItem>
               <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed font-light max-w-2xl mt-8" style={{ fontFamily: 'var(--font-hanken-grotesk)' }}>
-                A <motion.span 
+                A <motion.span
                   whileHover={{ scale: 1.05, y: -2 }}
                   className="relative inline-block px-2.5 py-1 rounded-md bg-accent/5 border border-accent/20 text-accent font-medium transition-all duration-300 hover:bg-accent/10 hover:border-accent/40 cursor-default group"
                   style={{ fontFamily: 'var(--font-instrument-serif)' }}
@@ -226,10 +226,10 @@ export default function Home() {
         <SectionDivider label="PRT_AUTO_XP" />
 
         {/* Experience Section */}
-        <section id="experience" className="space-y-16 py-12 mt-20 mb-24">
+        <section id="experience" className="space-y-16 py-12 mt-20 mb-48">
           <Reveal width="100%">
             <div className="flex flex-col items-center justify-center text-center mb-20 w-full">
-              <h2 className="text-4xl md:text-5xl font-medium tracking-tight">Experience</h2>
+              <h2 className="text-4xl md:text-5xl font-medium tracking-tight" style={{ fontFamily: 'var(--font-outfit)' }}>Experience</h2>
             </div>
           </Reveal>
 
@@ -241,7 +241,7 @@ export default function Home() {
                 <div className="group space-y-4">
                   <div className="flex justify-between items-baseline gap-4">
                     <h3 className="text-3xl font-medium tracking-tight group-hover:text-accent transition-colors duration-500">{exp.role}</h3>
-                    <span className="font-mono text-[10px] opacity-40 whitespace-nowrap bg-white/5 px-2 py-1 rounded">{exp.year}</span>
+                    <span className="font-mono text-sm text-accent/80 whitespace-nowrap px-0">{exp.year}</span>
                   </div>
                   <p className="text-xs text-accent font-medium uppercase tracking-[0.2em] font-mono">{exp.company}</p>
                   <p className="text-foreground/80 leading-relaxed text-base max-w-xl font-light italic">{exp.desc}</p>
@@ -254,10 +254,10 @@ export default function Home() {
         <SectionDivider label="SYS_STK_V2" />
 
         {/* Skills Section */}
-        <section id="skills" className="space-y-16 py-12 mt-20 mb-24">
+        <section id="skills" className="space-y-16 py-12 mt-20 mb-48">
           <Reveal width="100%">
             <div className="flex flex-col items-center justify-center text-center mb-20 w-full">
-              <h2 className="text-4xl md:text-5xl font-medium tracking-tight">Skills</h2>
+              <h2 className="text-4xl md:text-5xl font-medium tracking-tight" style={{ fontFamily: 'var(--font-outfit)' }}>Skills</h2>
             </div>
           </Reveal>
 
@@ -272,8 +272,7 @@ export default function Home() {
                       transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                       className="w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(216,207,188,0.6)]"
                     />
-                    <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-foreground/50 font-medium">Backend</h3>
-                    <div className="flex-1 h-px bg-gradient-to-r from-accent/20 via-accent/10 to-transparent"></div>
+                    <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-accent font-medium">Backend</h3>
                   </div>
                   <div className="flex flex-wrap gap-3">
                     {[
@@ -308,8 +307,7 @@ export default function Home() {
                       transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                       className="w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(216,207,188,0.6)]"
                     />
-                    <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-foreground/50 font-medium">CMS</h3>
-                    <div className="flex-1 h-px bg-gradient-to-r from-accent/20 via-accent/10 to-transparent"></div>
+                    <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-accent font-medium">CMS</h3>
                   </div>
                   <div className="flex flex-wrap gap-3">
                     {[
@@ -344,8 +342,7 @@ export default function Home() {
                       transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                       className="w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(216,207,188,0.6)]"
                     />
-                    <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-foreground/50 font-medium">Frontend</h3>
-                    <div className="flex-1 h-px bg-gradient-to-r from-accent/20 via-accent/10 to-transparent"></div>
+                    <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-accent font-medium">Frontend</h3>
                   </div>
                   <div className="flex flex-wrap gap-3">
                     {[
@@ -378,8 +375,7 @@ export default function Home() {
                       transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
                       className="w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(216,207,188,0.6)]"
                     />
-                    <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-foreground/50 font-medium">Databases</h3>
-                    <div className="flex-1 h-px bg-gradient-to-r from-accent/20 via-accent/10 to-transparent"></div>
+                    <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-accent font-medium">Databases</h3>
                   </div>
                   <div className="flex flex-wrap gap-3">
                     {[
@@ -411,10 +407,10 @@ export default function Home() {
         <SectionDivider label="ARC_WKS_FTR" />
 
         {/* Projects Section */}
-        <section id="work" className="space-y-16 py-12 mt-20 mb-24">
+        <section id="work" className="space-y-16 py-12 mt-20 mb-48">
           <Reveal width="100%">
             <div className="flex flex-col items-center justify-center text-center mb-20 w-full">
-              <h2 className="text-4xl md:text-5xl font-medium tracking-tight">Featured Work</h2>
+              <h2 className="text-4xl md:text-5xl font-medium tracking-tight" style={{ fontFamily: 'var(--font-outfit)' }}>Featured Work</h2>
             </div>
           </Reveal>
 
@@ -438,7 +434,7 @@ export default function Home() {
                       </div>
                       <ExternalLink className="w-5 h-5 text-foreground/20 group-hover:text-accent transition-colors duration-500 shrink-0 mt-2" />
                     </div>
-                    
+
                     <p className="text-foreground/70 leading-relaxed text-base max-w-2xl font-light">
                       {project.desc}
                     </p>
@@ -467,11 +463,13 @@ export default function Home() {
           </div>
         </section>
 
+        <SectionDivider label="ACH_LGC_V1" />
+
         {/* Achievements Section */}
-        <section id="achievements" className="space-y-16 py-12 mt-20 mb-24">
+        <section id="achievements" className="space-y-16 py-12 mt-20 mb-48">
           <Reveal width="100%">
             <div className="flex flex-col items-center justify-center text-center mb-20 w-full">
-              <h2 className="text-4xl md:text-5xl font-medium tracking-tight">Achievements</h2>
+              <h2 className="text-4xl md:text-5xl font-medium tracking-tight" style={{ fontFamily: 'var(--font-outfit)' }}>Achievements</h2>
             </div>
           </Reveal>
 
@@ -519,132 +517,132 @@ export default function Home() {
                     }}
                     className="group relative pl-8 border-l border-border/20 hover:border-accent/40 transition-colors duration-500 pb-12"
                   >
-                  <div className="absolute left-0 top-0 w-2 h-px bg-accent/40 -translate-x-full" />
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
-                    <div className="flex items-center gap-3">
-                      <motion.div
-                        animate={{ opacity: [1, 0.3, 1] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
-                        className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)] shrink-0"
-                      />
-                      <h3 className="text-2xl font-medium tracking-tight group-hover:text-accent transition-colors duration-500">
-                        {ach.title}
-                      </h3>
-                      {ach.images && (
-                        <button
-                          onClick={() => {
-                            if (ach.showCollage) {
-                              setExpandedAchievementIdx(expandedAchievementIdx === i ? null : i);
-                              setIsClickTriggered(true);
-                            } else {
-                              setSelectedGallery(ach.images);
-                              setCurrentImageIndex(0);
-                            }
-                          }}
-                          className={`p-1.5 rounded-full transition-all duration-300 ${(ach.showCollage && expandedAchievementIdx === i)
-                            ? "bg-accent text-background"
-                            : "bg-accent/10 text-accent hover:bg-accent hover:text-background"
-                            }`}
-                          title={ach.images.length > 1 ? "View Gallery" : "View Certificate"}
-                        >
-                          <ImageIcon size={14} />
-                        </button>
-                      )}
-                    </div>
-                    <span className="font-mono text-[10px] opacity-40 whitespace-nowrap bg-white/5 px-2 py-1 rounded">
-                      {ach.date}
-                    </span>
-                  </div>
-                  <p className="text-xs text-accent/60 font-medium uppercase tracking-[0.2em] mb-3 font-mono">{ach.org}</p>
-                  <p className="text-foreground/60 leading-relaxed text-sm max-w-2xl font-light italic mb-2">
-                    {ach.desc}
-                  </p>
-
-                  {/* Expanded Content (Conditional) */}
-                  <AnimatePresence>
-                    {ach.showCollage && ach.images && expandedAchievementIdx === i && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0, marginTop: 0 }}
-                        animate={{ height: "auto", opacity: 1, marginTop: 24 }}
-                        exit={{ height: 0, opacity: 0, marginTop: 0 }}
-                        className="relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.01] backdrop-blur-sm"
-                      >
-                        {ach.images.length > 1 ? (
-                          <div className="relative group/marquee py-8 overflow-hidden">
-                            <motion.div
-                              animate={{
-                                x: [0, -((ach.images.length * 280) - 800), 0]
-                              }}
-                              transition={{
-                                duration: ach.images.length * 8,
-                                repeat: Infinity,
-                                ease: "linear"
-                              }}
-                              className="flex w-fit px-12"
-                            >
-                              {ach.images.map((img, idx) => (
-                                <motion.div
-                                  key={idx}
-                                  animate={{
-                                    y: [0, idx % 2 === 0 ? -10 : 10, 0]
-                                  }}
-                                  transition={{
-                                    duration: 4 + (idx % 2),
-                                    repeat: Infinity,
-                                    ease: "easeInOut"
-                                  }}
-                                  className="relative w-64 h-40 mx-4 shrink-0 cursor-pointer overflow-hidden rounded-xl border border-white/10 group/img shadow-xl"
-                                  onClick={() => {
-                                    setSelectedGallery(ach.images);
-                                    setCurrentImageIndex(idx);
-                                  }}
-                                >
-                                  <Image
-                                    src={img}
-                                    alt="Achievement item"
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover/img:scale-110"
-                                    placeholder="blur"
-                                    sizes="256px"
-                                  />
-                                  <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
-                                    <ImageIcon className="text-background" size={24} />
-                                  </div>
-                                </motion.div>
-                              ))}
-                            </motion.div>
-                            {/* Gradient Overlays */}
-                            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background via-background/60 to-transparent z-10 pointer-events-none" />
-                            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background via-background/60 to-transparent z-10 pointer-events-none" />
-                          </div>
-                        ) : (
-                          <div className="p-4 flex justify-center">
-                            <motion.div
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              className="relative cursor-pointer overflow-hidden rounded-xl border border-white/10 group/img w-full max-w-sm aspect-[4/3] md:aspect-video"
-                              onClick={() => {
+                    <div className="absolute left-0 top-0 w-2 h-px bg-accent/40 -translate-x-full" />
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
+                      <div className="flex items-center gap-3">
+                        <motion.div
+                          animate={{ opacity: [1, 0.3, 1] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
+                          className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)] shrink-0"
+                        />
+                        <h3 className="text-2xl font-medium tracking-tight group-hover:text-accent transition-colors duration-500">
+                          {ach.title}
+                        </h3>
+                        {ach.images && (
+                          <button
+                            onClick={() => {
+                              if (ach.showCollage) {
+                                setExpandedAchievementIdx(expandedAchievementIdx === i ? null : i);
+                                setIsClickTriggered(true);
+                              } else {
                                 setSelectedGallery(ach.images);
                                 setCurrentImageIndex(0);
-                              }}
-                            >
-                              <Image
-                                src={ach.images[0]}
-                                alt="Achievement item"
-                                fill
-                                className="object-cover transition-transform duration-500 group-hover/img:scale-105"
-                                placeholder="blur"
-                                sizes="(max-width: 768px) 100vw, 384px"
-                              />
-                              <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
-                                <ImageIcon className="text-background" size={24} />
-                              </div>
-                            </motion.div>
-                          </div>
+                              }
+                            }}
+                            className={`p-1.5 rounded-full transition-all duration-300 ${(ach.showCollage && expandedAchievementIdx === i)
+                              ? "bg-accent text-background"
+                              : "bg-accent/10 text-accent hover:bg-accent hover:text-background"
+                              }`}
+                            title={ach.images.length > 1 ? "View Gallery" : "View Certificate"}
+                          >
+                            <ImageIcon size={14} />
+                          </button>
                         )}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                      </div>
+                      <span className="font-mono text-sm text-accent/80 whitespace-nowrap px-0">
+                        {ach.date}
+                      </span>
+                    </div>
+                    <p className="text-xs text-accent/60 font-medium uppercase tracking-[0.2em] mb-3 font-mono">{ach.org}</p>
+                    <p className="text-foreground/60 leading-relaxed text-sm max-w-2xl font-light italic mb-2">
+                      {ach.desc}
+                    </p>
+
+                    {/* Expanded Content (Conditional) */}
+                    <AnimatePresence>
+                      {ach.showCollage && ach.images && expandedAchievementIdx === i && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                          animate={{ height: "auto", opacity: 1, marginTop: 24 }}
+                          exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                          className="relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.01] backdrop-blur-sm"
+                        >
+                          {ach.images.length > 1 ? (
+                            <div className="relative group/marquee py-8 overflow-hidden">
+                              <motion.div
+                                animate={{
+                                  x: [0, -((ach.images.length * 280) - 800), 0]
+                                }}
+                                transition={{
+                                  duration: ach.images.length * 8,
+                                  repeat: Infinity,
+                                  ease: "linear"
+                                }}
+                                className="flex w-fit px-12"
+                              >
+                                {ach.images.map((img, idx) => (
+                                  <motion.div
+                                    key={idx}
+                                    animate={{
+                                      y: [0, idx % 2 === 0 ? -10 : 10, 0]
+                                    }}
+                                    transition={{
+                                      duration: 4 + (idx % 2),
+                                      repeat: Infinity,
+                                      ease: "easeInOut"
+                                    }}
+                                    className="relative w-64 h-40 mx-4 shrink-0 cursor-pointer overflow-hidden rounded-xl border border-white/10 group/img shadow-xl"
+                                    onClick={() => {
+                                      setSelectedGallery(ach.images);
+                                      setCurrentImageIndex(idx);
+                                    }}
+                                  >
+                                    <Image
+                                      src={img}
+                                      alt="Achievement item"
+                                      fill
+                                      className="object-cover transition-transform duration-500 group-hover/img:scale-110"
+                                      placeholder="blur"
+                                      sizes="256px"
+                                    />
+                                    <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
+                                      <ImageIcon className="text-background" size={24} />
+                                    </div>
+                                  </motion.div>
+                                ))}
+                              </motion.div>
+                              {/* Gradient Overlays */}
+                              <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background via-background/60 to-transparent z-10 pointer-events-none" />
+                              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background via-background/60 to-transparent z-10 pointer-events-none" />
+                            </div>
+                          ) : (
+                            <div className="p-4 flex justify-center">
+                              <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="relative cursor-pointer overflow-hidden rounded-xl border border-white/10 group/img w-full max-w-sm aspect-[4/3] md:aspect-video"
+                                onClick={() => {
+                                  setSelectedGallery(ach.images);
+                                  setCurrentImageIndex(0);
+                                }}
+                              >
+                                <Image
+                                  src={ach.images[0]}
+                                  alt="Achievement item"
+                                  fill
+                                  className="object-cover transition-transform duration-500 group-hover/img:scale-105"
+                                  placeholder="blur"
+                                  sizes="(max-width: 768px) 100vw, 384px"
+                                />
+                                <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
+                                  <ImageIcon className="text-background" size={24} />
+                                </div>
+                              </motion.div>
+                            </div>
+                          )}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </Reveal>
                 {i < arr.length - 1 && (
@@ -741,24 +739,12 @@ export default function Home() {
           )}
         </AnimatePresence>
 
+        <div className="h-10 w-full" />
         <Footer />
 
-        {/* Motivational Section */}
-        <section className="pt-32 pb-56 px-4 relative">
-          <div className="max-w-4xl mx-auto">
-            <Reveal margin="0px" transition={{ duration: 0.8, ease: "easeOut" }}>
-              <div className="relative group p-12 rounded-[2rem] border border-white/5 bg-white/[0.01] backdrop-blur-sm overflow-hidden text-center">
-                <div className="absolute inset-0 bg-accent/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-                <div className="absolute -inset-1 bg-gradient-to-r from-accent/0 via-accent/5 to-accent/0 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+        {/* Spacer for Floating Dock */}
+        <div className="h-24 md:h-32 w-full" />
 
-                <h2 className="text-xl md:text-3xl font-medium tracking-tight text-foreground/80 leading-relaxed max-w-2xl mx-auto">
-                  LOSERS BECOME <span className="text-accent italic">WINNERS</span> <br />
-                  BY TRYING <span className="underline decoration-accent/20 underline-offset-8">AGAIN.</span>
-                </h2>
-              </div>
-            </Reveal>
-          </div>
-        </section>
       </div>
     </main >
   );
