@@ -240,7 +240,30 @@ a {
   }
 
   /* Body text - Hanken Grotesk */
-  p, span, div {
+  p,
+  span,
+  div {
     font-family: var(--font-hanken-grotesk), sans-serif;
   }
+}
+
+/* Custom Stack Tag Component */
+.stack-tag {
+  @apply text-[10px] font-mono py-1 px-1 rounded-md transition-all duration-300 border;
+
+  /* Default (Dark Theme) */
+  /* Using explicit colors as requested: White in dark */
+  @apply border-white/10 bg-white/5 text-white;
+
+  /* Hover Effects */
+  @apply hover:border-accent/20 hover:text-accent;
+}
+
+/* Light Theme Override */
+:is(.light *) .stack-tag {
+  /* Black in light mode */
+  @apply border-black/10 bg-black/5 text-black;
+
+  /* Hover Effects for Light Mode (same accent usually, but ensuring it applies) */
+  @apply hover:border-accent/20 hover:text-accent;
 }

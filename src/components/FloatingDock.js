@@ -3,21 +3,22 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Home, Briefcase, Github, Linkedin, Twitter, Sun, Moon, Trophy } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
 const links = [
     { id: 'intro', name: 'Home', icon: Home, type: 'scroll' },
     { id: 'work', name: 'Projects', icon: Briefcase, type: 'scroll' },
-    { id: 'achievements', name: 'Achievements', icon: Trophy, type: 'scroll' },
     { id: 'divider-1', type: 'divider' },
     { id: 'github', name: 'GitHub', icon: Github, type: 'external', url: 'https://github.com/tiwariaayu' },
-    { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, type: 'external', url: 'https://linkedin.com/in/tiwariaayu' },
-    { id: 'twitter', name: 'X', icon: Twitter, type: 'external', url: 'https://twitter.com' },
+    { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, type: 'external', url: 'https://www.linkedin.com/in/ayushman-037379264/' },
+    { id: 'twitter', name: 'X', icon: Twitter, type: 'external', url: 'https://x.com/tiw_ari_ayu' },
     { id: 'divider-2', type: 'divider' },
     { id: 'theme', name: 'Theme', icon: Sun, type: 'action' },
 ];
 
 export default function FloatingDock() {
+    const router = useRouter();
     const [activeSection, setActiveSection] = useState('intro');
     const [hoveredId, setHoveredId] = useState(null);
     const [theme, setTheme] = useState('dark');
@@ -34,6 +35,7 @@ export default function FloatingDock() {
         } else {
             document.documentElement.classList.remove('light');
         }
+
 
         const observer = new IntersectionObserver(
             (entries) => {
@@ -69,7 +71,12 @@ export default function FloatingDock() {
             const element = document.getElementById(link.id);
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth' });
+            } else if (link.id === 'intro' && window.location.pathname !== '/') {
+                // Return home if not on home page
+                router.push('/');
             }
+        } else if (link.type === 'internal') {
+            router.push(link.url);
         } else if (link.type === 'external') {
             window.open(link.url, '_blank');
         } else if (link.type === 'action' && link.id === 'theme') {
@@ -78,15 +85,15 @@ export default function FloatingDock() {
     };
 
     return (
-        <div className="fixed bottom-6 inset-x-0 z-50 flex justify-center pointer-events-none px-4">
+        <div className="fixed bottom-4 md:bottom-6 inset-x-0 z-50 flex justify-center pointer-events-none px-4">
             <motion.div
                 initial={{ y: 100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                className="w-max p-2 rounded-full border z-50 pointer-events-auto relative mx-auto flex items-center px-1.5 bg-background/80 backdrop-blur-xl [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)] transform-gpu dark:border-white/10 dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]"
+                className="w-max p-1.5 md:p-2 rounded-full border z-50 pointer-events-auto relative mx-auto flex items-center px-1 md:px-1.5 bg-background/80 backdrop-blur-xl [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)] transform-gpu dark:border-white/10 dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]"
             >
                 {links.map((link) => {
                     if (link.type === 'divider') {
-                        return <div key={link.id} className="shrink-0 bg-white/10 w-[1px] h-6 mx-2" />;
+                        return <div key={link.id} className="shrink-0 bg-white/10 w-[1px] h-4 md:h-6 mx-1 md:mx-2" />;
                     }
 
                     const isActive = activeSection === link.id;
@@ -97,13 +104,13 @@ export default function FloatingDock() {
                     }
 
                     return (
-                        <div key={link.id} className="relative flex aspect-square items-center justify-center rounded-full" style={{ width: '48px' }}>
+                        <div key={link.id} className="relative flex w-10 md:w-12 aspect-square items-center justify-center rounded-full">
                             <button
                                 onMouseEnter={() => setHoveredId(link.id)}
                                 onMouseLeave={() => setHoveredId(null)}
                                 onClick={() => handleClick(link)}
                                 className={cn(
-                                    "flex items-center justify-center rounded-full transition-all duration-300 relative group size-10",
+                                    "flex items-center justify-center rounded-full transition-all duration-300 relative group size-8 md:size-10",
                                     isActive
                                         ? "bg-foreground text-background shadow-lg"
                                         : "text-foreground/40 hover:text-foreground hover:bg-white/5"
@@ -115,8 +122,9 @@ export default function FloatingDock() {
                                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                                     className="flex items-center justify-center"
                                 >
-                                    <Icon size={18} strokeWidth={isActive ? 2.5 : 2} />
+                                    <Icon className="w-4 h-4 md:w-[18px] md:h-[18px]" strokeWidth={isActive ? 2.5 : 2} />
                                 </motion.div>
+
 
                                 {/* Tooltip */}
                                 <AnimatePresence>

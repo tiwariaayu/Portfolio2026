@@ -2,7 +2,6 @@
 
 import Footer from "@/components/Footer";
 import CommandPalette from "@/components/CommandPalette";
-import FloatingDock from "@/components/FloatingDock";
 import TechStack from "@/components/TechStack";
 import { Reveal, StaggerContainer, StaggerItem } from "@/components/ScrollReveal";
 import Image from "next/image";
@@ -27,6 +26,7 @@ import imgSeminar from "../assets/images/seminar.jpg";
 import imgSeminar2 from "../assets/images/semnar2.jpg";
 
 export default function Home() {
+  const [selectedProject, setSelectedProject] = useState(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -68,7 +68,6 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground relative flex justify-center selection:bg-accent/30 selection:text-accent-foreground">
       <CommandPalette />
-      <FloatingDock />
 
       {/* Decorative Left Margin */}
       <div className="hidden lg:flex fixed left-0 top-0 h-full w-[15vw] flex-col justify-between py-12 px-8 border-r border-border/30 opacity-40 select-none pointer-events-none">
@@ -407,45 +406,108 @@ export default function Home() {
         <SectionDivider label="ARC_WKS_FTR" style={{ marginTop: '6px' }} />
 
         {/* Projects Section */}
-        <section id="work" className="space-y-16 py-12 mt-20 mb-48">
+        <section id="work" className="space-y-16 py-12 mt-20 mb-48 pb-32">
           <Reveal width="100%">
-            <div className="flex flex-col items-center justify-center text-center mb-20 w-full">
-              <h2 className="text-4xl md:text-5xl font-medium tracking-tight" style={{ fontFamily: 'var(--font-outfit)' }}>Featured Work</h2>
+            <div className="flex flex-col items-center justify-center text-center mb-32 w-full">
+              <h2 className="text-4xl md:text-5xl font-medium tracking-tight" style={{ fontFamily: 'var(--font-outfit)' }}>Web Apps</h2>
             </div>
           </Reveal>
 
           <div className="grid gap-0">
             {[
-              { id: "01", title: "Nebula Cloud Engine", type: "Core Architecture", tags: ["Next.js", "WebGL", "Rust"], desc: "A high-performance distributed rendering engine for real-time 3D visualizations." },
-              { id: "02", title: "Minimal Design Framework", type: "Design System", tags: ["CSS", "A11y", "Tailwind"], desc: "An open-source library prioritizing reading speed and accessibility for information-dense sites." }
+              {
+                id: "01",
+                title: "Inkslate",
+                subtitle: "Resume & Portfolio Platform",
+                stacks: ["Next.js", "Supabase"],
+                desc: "The premium platform for crafting professional resumes and portfolios that stand out. Built for designers, developers, and professionals.",
+                github: "Private",
+                live: "https://inkslate.online"
+              },
+              {
+                id: "02",
+                title: "EMS Demo",
+                subtitle: "Employee Management Dashboard",
+                stacks: ["Next.js", "Supabase"],
+                desc: "A streamlined employee management system for tracking attendance, roles, and performance. simplified workforce administration.",
+                github: "Private",
+                live: "https://emsdemobyayu.netlify.app/"
+              },
+              {
+                id: "03",
+                title: "Krishak",
+                subtitle: "Agri-Tech Marketplace",
+                stacks: ["MongoDB", "Express", "React", "Node.js"],
+                desc: "Empowering farmers and connecting them directly with consumers. Fresh, organic produce delivered to your doorstep.",
+                github: "Private",
+                live: "https://krishak.shop/"
+              }
             ].map((project, i, arr) => (
               <div key={i}>
                 <Reveal delay={i * 0.1}>
-                  <div className="group space-y-6 pb-16">
-                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-                      <div className="space-y-4 flex-1">
-                        <div className="flex items-center gap-4">
-                          <span className="font-mono text-[10px] text-accent opacity-60 tracking-widest">{project.id}</span>
-                          <span className="text-[9px] font-mono uppercase tracking-[0.2em] opacity-30">{project.type}</span>
+                  <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 items-center pb-16" style={{ margin: "10px" }}>
+                    {/* Left Side: Project Details */}
+                    <div className="space-y-6">
+                      <div className="flex flex-col gap-6">
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-4">
+                            <span className="text-[9px] font-mono uppercase tracking-[0.2em] opacity-30">{project.subtitle}</span>
+                          </div>
+                          <h3 className="text-3xl md:text-4xl font-medium tracking-tight group-hover:text-accent transition-colors duration-500">
+                            <span className="opacity-50 font-mono text-2xl mr-2">{project.id}.</span>{project.title}
+                          </h3>
                         </div>
-                        <h3 className="text-3xl md:text-4xl font-medium tracking-tight group-hover:text-accent transition-colors duration-500">
-                          {project.title}
-                        </h3>
+
+                        <div className="flex gap-4 shrink-0">
+                          {project.github === "Private" ? (
+                            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-foreground/30 cursor-not-allowed" title="Private Repository">
+                              <span className="hidden md:inline">Private</span>
+                              <Shield className="w-4 h-4" />
+                            </div>
+                          ) : (
+                            <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-foreground/50 hover:text-accent transition-colors duration-300">
+                              <span className="hidden md:inline">Github</span>
+                              <ExternalLink className="w-4 h-4" />
+                            </a>
+                          )}
+                          <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-foreground/50 hover:text-accent transition-colors duration-300">
+                            <span className="hidden md:inline">Live</span>
+                            <Globe className="w-4 h-4" />
+                          </a>
+                        </div>
                       </div>
-                      <ExternalLink className="w-5 h-5 text-foreground/20 group-hover:text-accent transition-colors duration-500 shrink-0 mt-2" />
+
+                      <p className="text-foreground/70 leading-relaxed text-base font-light">
+                        {project.desc}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2 pt-2">
+                        {project.stacks.map(stack => (
+                          <span key={stack} className="stack-tag">
+                            {stack}
+                          </span>
+                        ))}
+                      </div>
                     </div>
 
-                    <p className="text-foreground/70 leading-relaxed text-base max-w-2xl font-light">
-                      {project.desc}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 pt-2">
-                      {project.tags.map(tag => (
-                        <span key={tag} className="text-[9px] font-mono py-1.5 px-3 rounded-md border border-white/10 bg-white/5 text-foreground/50 hover:border-accent/20 hover:text-foreground/70 transition-all duration-300">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                    {/* Right Side: Website Preview */}
+                    {project.live && project.live !== "#" && (
+                      <div
+                        onClick={() => setSelectedProject(project)}
+                        className="rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm w-full shadow-2xl cursor-pointer hover:border-accent/40 transition-colors duration-300 h-[260px] relative group"
+                      >
+                        <div className="absolute inset-0 w-[400%] h-[400%] origin-top-left scale-[0.25] bg-background/50 transition-transform duration-700 group-hover:scale-[0.26]">
+                          <iframe
+                            src={project.live}
+                            title={`${project.title} Preview`}
+                            className="absolute inset-0 w-full h-full border-0 pointer-events-none select-none"
+                            loading="lazy"
+                            scrolling="no"
+                            tabIndex="-1"
+                          />
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </Reveal>
                 {i < arr.length - 1 && (
@@ -454,7 +516,7 @@ export default function Home() {
                     whileInView={{ scaleX: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="h-px bg-gradient-to-r from-transparent via-border/30 to-transparent mb-16"
+                    className="border-t border-dashed border-white/20 w-full mb-24"
                     style={{ transformOrigin: "left" }}
                   />
                 )}
@@ -659,6 +721,86 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        {/* Project Details Modal */}
+        <AnimatePresence>
+          {selectedProject && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="absolute inset-0 bg-black/60 backdrop-blur-md"
+                onClick={() => setSelectedProject(null)}
+              />
+
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                className="relative w-full max-w-2xl bg-[#0a0a0a] rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/50 text-white/70 hover:bg-white/10 hover:text-white transition-all"
+                >
+                  <X size={20} />
+                </button>
+
+                {/* Top: Preview */}
+                <div className="relative w-full aspect-video bg-black/20 border-b border-white/5">
+                  <iframe
+                    src={selectedProject.live}
+                    title={`${selectedProject.title} Preview`}
+                    className="absolute inset-0 w-full h-full border-0 pointer-events-none select-none"
+                    loading="lazy"
+                    scrolling="no"
+                    tabIndex="-1"
+                  />
+                  {/* Overlay to prevent interaction even if pointer-events fails on iframe */}
+                  <div className="absolute inset-0 bg-transparent" />
+                </div>
+
+                {/* Bottom: Details */}
+                <div className="p-8 space-y-6">
+                  <div>
+                    <h2 className="text-3xl font-medium text-white tracking-tight mb-1">{selectedProject.title}</h2>
+                    <span className="text-white/40 font-mono text-sm">2025</span>
+                  </div>
+
+                  <p className="text-white/70 leading-relaxed font-light text-sm">
+                    {selectedProject.desc}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {selectedProject.stacks.map(stack => (
+                      <span key={stack} className="text-[10px] font-mono py-1 px-2 rounded-md border border-white/10 bg-white/5 text-white/70">
+                        {stack}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="pt-4 flex gap-4">
+                    {selectedProject.github !== "Private" && (
+                      <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white/50 hover:text-white transition-colors">
+                        <ExternalLink className="w-4 h-4" />
+                        <span>Github</span>
+                      </a>
+                    )}
+                    {selectedProject.live && (
+                      <a href={selectedProject.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white/50 hover:text-white transition-colors">
+                        <Globe className="w-4 h-4" />
+                        <span>Live Site</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
 
         {/* Gallery Modal */}
         <AnimatePresence>

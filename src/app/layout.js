@@ -1,5 +1,6 @@
 import { Instrument_Serif, Space_Mono, Hanken_Grotesk, Outfit, Syne } from "next/font/google";
 import "./globals.css";
+import FloatingDock from "@/components/FloatingDock";
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
@@ -42,6 +43,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${instrumentSerif.variable} ${spaceMono.variable} ${hankenGrotesk.variable} ${outfit.variable} ${syne.variable} antialiased`}
       >
+        <FloatingDock />
         {children}
       </body>
     </html>
