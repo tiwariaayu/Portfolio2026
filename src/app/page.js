@@ -9,6 +9,7 @@ import SectionDivider from "@/components/SectionDivider";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
 import { ExternalLink, X, ChevronLeft, ChevronRight, Image as ImageIcon, Database, Shield, Globe } from "lucide-react";
+import CameraIcon from "@/components/ui/camera-icon";
 import {
   SiJavascript, SiTypescript, SiNodedotjs, SiExpress, SiReact, SiNextdotjs, SiPhp, SiDrupal, SiMongodb, SiSupabase, SiHtml5, SiCss3, SiFigma
 } from "react-icons/si";
@@ -20,10 +21,12 @@ import imgGrastech from "../assets/images/Grastech_Ayushman.jpg";
 import imgExpo from "../assets/images/expo2025.jpg";
 import imgKrishakBanner from "../assets/images/krishak_banner.jpg";
 import imgKrishak2 from "../assets/images/krishak2.jpg";
-import imgKrishak3 from "../assets/images/krishak3.jpg";
 import imgNationalSeminar from "../assets/images/national_seminar.jpg";
 import imgSeminar from "../assets/images/seminar.jpg";
 import imgSeminar2 from "../assets/images/semnar2.jpg";
+import inkslate from "../assets/ProjectImages/inkslate.png";
+import emsdemo from "../assets/ProjectImages/emsdemo.png";
+import ybor from "../assets/ProjectImages/ybor.png";
 
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -422,7 +425,8 @@ export default function Home() {
                 stacks: ["Next.js", "Supabase"],
                 desc: "The premium platform for crafting professional resumes and portfolios that stand out. Built for designers, developers, and professionals.",
                 github: "Private",
-                live: "https://inkslate.online"
+                live: "https://inkslate.online",
+                image: inkslate
               },
               {
                 id: "02",
@@ -431,18 +435,21 @@ export default function Home() {
                 stacks: ["Next.js", "Supabase"],
                 desc: "A streamlined employee management system for tracking attendance, roles, and performance. simplified workforce administration.",
                 github: "Private",
-                live: "https://emsdemobyayu.netlify.app/"
+                live: "https://emsdemobyayu.netlify.app/",
+                image: emsdemo,
+                imageFit: "fill"
               },
               {
                 id: "03",
-                title: "Krishak",
-                subtitle: "Agri-Tech Marketplace",
-                stacks: ["MongoDB", "Express", "React", "Node.js"],
-                desc: "Empowering farmers and connecting them directly with consumers. Fresh, organic produce delivered to your doorstep.",
+                title: "Ybor",
+                subtitle: "Marketing-Agency",
+                stacks: ["Next.js"],
+                desc: "A comprehensive digital marketing agency platform featuring dynamic service showcases, lead generation tools, and a modern, high-converting design aesthetic.",
                 github: "Private",
-                live: "https://krishak.shop/"
+                live: "https://ybor.netlify.app/",
+                image: ybor
               }
-            ].map((project, i, arr) => (
+            ].slice(0, 3).map((project, i, arr) => (
               <div key={i}>
                 <Reveal delay={i * 0.1}>
                   <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 items-center pb-16" style={{ margin: "10px" }}>
@@ -494,16 +501,15 @@ export default function Home() {
                     {project.live && project.live !== "#" && (
                       <div
                         onClick={() => setSelectedProject(project)}
-                        className="rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm w-full shadow-2xl cursor-pointer hover:border-accent/40 transition-colors duration-300 h-[260px] relative group"
+                        className="rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm w-full shadow-2xl cursor-pointer hover:border-accent/40 transition-colors duration-300 aspect-video relative group"
                       >
-                        <div className="absolute inset-0 w-[400%] h-[400%] origin-top-left scale-[0.25] bg-background/50 transition-transform duration-700 group-hover:scale-[0.26]">
-                          <iframe
-                            src={project.live}
-                            title={`${project.title} Preview`}
-                            className="absolute inset-0 w-full h-full border-0 pointer-events-none select-none"
-                            loading="lazy"
-                            scrolling="no"
-                            tabIndex="-1"
+                        <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
+                          <Image
+                            src={project.image}
+                            alt={`${project.title} Preview`}
+                            fill
+                            className={`object-${project.imageFit || 'cover'} ${!project.imageFit || project.imageFit === 'cover' ? 'object-top' : ''}`}
+                            placeholder="blur"
                           />
                         </div>
                       </div>
@@ -522,6 +528,16 @@ export default function Home() {
                 )}
               </div>
             ))}
+          </div>
+
+          <div className="relative w-full flex justify-center mt-12 pb-8">
+            <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none" />
+            <a
+              href="/projects"
+              className="project-button"
+            >
+              Show All Projects
+            </a>
           </div>
         </section>
 
@@ -550,7 +566,7 @@ export default function Home() {
                 org: "Krishak Project",
                 date: "June 2025",
                 desc: "Handled the complete website creation and architecture for 'Krishak', a smart agriculture platform. Showcased at the 2025 Software Expo.",
-                images: [imgExpo, imgKrishakBanner, imgKrishak2, imgKrishak3],
+                images: [imgExpo, imgKrishakBanner, imgKrishak2],
                 showCollage: true
               },
               {
@@ -577,7 +593,7 @@ export default function Home() {
                         setExpandedAchievementIdx(null);
                       }
                     }}
-                    className="group relative pl-8 border-l border-border/20 hover:border-accent/40 transition-colors duration-500 pb-12"
+                    className="achievement group relative pl-8 border-l border-border/20 hover:border-accent/40 transition-colors duration-500 pb-12"
                   >
                     <div className="absolute left-0 top-0 w-2 h-px bg-accent/40 -translate-x-full" />
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
@@ -601,13 +617,10 @@ export default function Home() {
                                 setCurrentImageIndex(0);
                               }
                             }}
-                            className={`p-1.5 rounded-full transition-all duration-300 ${(ach.showCollage && expandedAchievementIdx === i)
-                              ? "bg-accent text-background"
-                              : "bg-accent/10 text-accent hover:bg-accent hover:text-background"
-                              }`}
+                            className={`btn-gallery ${(ach.showCollage && expandedAchievementIdx === i) ? 'active' : ''}`}
                             title={ach.images.length > 1 ? "View Gallery" : "View Certificate"}
                           >
-                            <ImageIcon size={14} />
+                            <CameraIcon size={20} />
                           </button>
                         )}
                       </div>
@@ -735,66 +748,71 @@ export default function Home() {
               />
 
               <motion.div
-                initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                initial={{ scale: 0.9, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.95, opacity: 0, y: 20 }}
-                className="relative w-full max-w-2xl bg-[#0a0a0a] rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col"
+                exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="relative w-full max-w-[420px] bg-black/40 backdrop-blur-2xl rounded-[32px] border border-white/10 p-[10px] shadow-2xl flex flex-col gap-4"
                 onClick={(e) => e.stopPropagation()}
+                style={{ padding: '10px' }}
               >
-                {/* Close Button */}
+                {/* Close Button - Absolute Positioned nicely */}
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/50 text-white/70 hover:bg-white/10 hover:text-white transition-all"
+                  className="absolute -top-12 right-0 md:-right-12 z-50 p-2 rounded-full bg-white/10 text-white/70 hover:bg-white hover:text-black transition-all backdrop-blur-sm"
                 >
                   <X size={20} />
                 </button>
 
-                {/* Top: Preview */}
-                <div className="relative w-full aspect-video bg-black/20 border-b border-white/5">
-                  <iframe
-                    src={selectedProject.live}
-                    title={`${selectedProject.title} Preview`}
-                    className="absolute inset-0 w-full h-full border-0 pointer-events-none select-none"
-                    loading="lazy"
-                    scrolling="no"
-                    tabIndex="-1"
-                  />
-                  {/* Overlay to prevent interaction even if pointer-events fails on iframe */}
-                  <div className="absolute inset-0 bg-transparent" />
+                {/* Header Row: Live Btn & Stack */}
+                <div className="flex justify-between items-center w-full" style={{ padding: '10px' }}>
+                  {selectedProject.live && (
+                    <a
+                      href={selectedProject.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="card-live btn-live"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                      View Live
+                    </a>
+                  )}
+
+                  <div className="flex items-center gap-2 px-5 py-3 rounded-full bg-white text-black border border-white/10 shadow-lg">
+                    <span className="card-live text-xs font-bold font-mono tracking-tighter uppercase">
+                      {selectedProject.stacks.slice(0, 2).map(s => s).join(" + ")}
+                    </span>
+                  </div>
                 </div>
 
-                {/* Bottom: Details */}
-                <div className="p-8 space-y-6">
-                  <div>
-                    <h2 className="text-3xl font-medium text-white tracking-tight mb-1">{selectedProject.title}</h2>
-                    <span className="text-white/40 font-mono text-sm">2025</span>
-                  </div>
-
-                  <p className="text-white/70 leading-relaxed font-light text-sm">
+                {/* Title & Desc */}
+                <div className="space-y-3 mt-2">
+                  <h2 className="text-3xl font-medium text-white tracking-tight leading-none" style={{ fontFamily: 'var(--font-outfit)' }}>
+                    {selectedProject.title}
+                  </h2>
+                  <p className="text-white/60 text-sm leading-relaxed font-light">
                     {selectedProject.desc}
                   </p>
+                </div>
 
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {selectedProject.stacks.map(stack => (
-                      <span key={stack} className="text-[10px] font-mono py-1 px-2 rounded-md border border-white/10 bg-white/5 text-white/70">
-                        {stack}
-                      </span>
-                    ))}
-                  </div>
+                {/* Image Container */}
+                <div className="relative w-full aspect-video rounded-[24px] overflow-hidden mt-2 border border-white/5 group">
+                  <Image
+                    src={selectedProject.image}
+                    alt={`${selectedProject.title} Preview`}
+                    fill
+                    className={`object-${selectedProject.imageFit || 'cover'} ${!selectedProject.imageFit || selectedProject.imageFit === 'cover' ? 'object-top' : ''} transition-transform duration-700 group-hover:scale-105`}
+                    placeholder="blur"
+                  />
+                  {/* Internal overlay for some depth */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
 
-                  <div className="pt-4 flex gap-4">
-                    {selectedProject.github !== "Private" && (
-                      <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white/50 hover:text-white transition-colors">
-                        <ExternalLink className="w-4 h-4" />
-                        <span>Github</span>
-                      </a>
-                    )}
-                    {selectedProject.live && (
-                      <a href={selectedProject.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white/50 hover:text-white transition-colors">
-                        <Globe className="w-4 h-4" />
-                        <span>Live Site</span>
-                      </a>
-                    )}
+                  {/* Date/Year Badge on Image */}
+                  <div className="absolute bottom-4 left-4 flex items-center gap-2">
+                    <div className="px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 flex items-center gap-1.5">
+                      <Globe size={12} className="text-white/70" />
+                      <span className="text-[10px] font-medium text-white/90">2025</span>
+                    </div>
                   </div>
                 </div>
               </motion.div>

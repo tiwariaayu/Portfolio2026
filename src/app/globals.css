@@ -267,3 +267,66 @@ a {
   /* Hover Effects for Light Mode (same accent usually, but ensuring it applies) */
   @apply hover:border-accent/20 hover:text-accent;
 }
+
+.card-live {
+  padding: 10px;
+}
+
+/* View Live Button - Theme Aware */
+.btn-live {
+  @apply px-6 py-2 rounded-full border text-sm font-medium tracking-wide flex items-center gap-2.5 transition-all duration-300;
+
+  /* Dark Theme (Default) */
+  @apply bg-[#1a1a1a] border-white/10 text-white;
+  @apply hover:bg-white/10 hover:text-white hover:border-white/30;
+}
+
+/* Light Theme Override */
+:is(.light *) .btn-live {
+  /* White button in light mode */
+  @apply bg-white border-black/10 text-black;
+  @apply hover:bg-black/5 hover:text-black hover:border-black/20;
+}
+
+/* Gallery/Camera Button */
+.btn-gallery {
+  @apply p-3 rounded-full transition-all duration-300;
+
+  /* Default State */
+  @apply bg-accent/10 text-accent;
+}
+
+.btn-gallery:hover {
+  @apply p-4 bg-[#e9204f] text-white;
+}
+
+.btn-gallery.active {
+  @apply bg-accent text-background;
+}
+
+/* Ensure active state doesn't get overridden by hover colors if that was the intent, 
+   but original code didn't apply hover colors to active state. 
+   However, originally padding expanion WAS applied to active state.
+   The CSS above applies padding expansion to both (since .btn-gallery:hover matches).
+   It also applies bg-[#e9204f] to active on hover because specificity is equal/similar?
+   Actually .btn-gallery:hover has higher specificity than .btn-gallery.active? 
+   No, class+pseudo vs class+class.
+   Let's make sure active state stays active color on hover if desired. 
+   Original code: if active return "bg-accent...", else return "hover:bg...".
+   So active state did NOT have hover colors.
+*/
+.btn-gallery.active:hover {
+  @apply bg-accent text-background;
+  /* Keep active color on hover */
+}
+
+.achievement {
+  padding: 20px;
+}
+
+.project-button {
+  @apply relative z-10 px-6 py-2.5 rounded-full bg-accent/5 border border-accent/10 backdrop-blur-md text-foreground/80 font-mono text-sm font-bold tracking-widest uppercase shadow-lg transition-all duration-300;
+
+  /* Hover Effects */
+  @apply hover:bg-accent hover:text-[#e9204f] hover:shadow-accent/25 hover:-translate-y-1;
+}

@@ -24,19 +24,31 @@ export default function FloatingDock() {
     const [theme, setTheme] = useState('dark');
 
     useEffect(() => {
-        // Sync theme with document class
-        const isLight = document.documentElement.classList.contains('light');
-        const initialTheme = isLight ? 'light' : 'dark';
-        setTheme(initialTheme);
+        // 1. Try to get theme from localStorage
+        const savedTheme = localStorage.getItem('theme');
 
-        // Ensure class is correct on mount
-        if (initialTheme === 'light') {
+        // 2. If no saved theme, check system preference or default to dark
+        const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+
+        // 3. Determine effective theme
+        // If saved exists, use it. Else if system is light, use light. Else dark.
+        let effectiveTheme = 'dark';
+        if (savedTheme) {
+            effectiveTheme = savedTheme;
+        } else if (systemPrefersLight) {
+            effectiveTheme = 'light';
+        }
+
+        setTheme(effectiveTheme);
+
+        // 4. Apply to DOM
+        if (effectiveTheme === 'light') {
             document.documentElement.classList.add('light');
         } else {
             document.documentElement.classList.remove('light');
         }
 
-
+        // Scroll Spy Logic
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -59,6 +71,8 @@ export default function FloatingDock() {
     const toggleTheme = () => {
         const newTheme = theme === 'dark' ? 'light' : 'dark';
         setTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
+
         if (newTheme === 'light') {
             document.documentElement.classList.add('light');
         } else {
@@ -93,7 +107,7 @@ export default function FloatingDock() {
             >
                 {links.map((link) => {
                     if (link.type === 'divider') {
-                        return <div key={link.id} className="shrink-0 bg-white/10 w-[1px] h-4 md:h-6 mx-1 md:mx-2" />;
+                        return <div key={link.id} className="shrink-0 bg-foreground/10 w-[1px] h-4 md:h-6 mx-1 md:mx-2" />;
                     }
 
                     const isActive = activeSection === link.id;
