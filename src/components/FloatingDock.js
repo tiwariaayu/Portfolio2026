@@ -2,23 +2,25 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Briefcase, Github, Linkedin, Twitter, Sun, Moon, Trophy } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { Home, Briefcase, Github, Linkedin, Sun, Moon, Trophy } from 'lucide-react';
+import { useRouter, usePathname } from 'next/navigation';
+import TwitterXIcon from './ui/twitter-x-icon';
 import { cn } from '@/lib/utils';
 
 const links = [
     { id: 'intro', name: 'Home', icon: Home, type: 'scroll' },
-    { id: 'work', name: 'Projects', icon: Briefcase, type: 'scroll' },
+    { id: 'work', name: 'Projects', icon: Briefcase, type: 'internal', url: '/projects' },
     { id: 'divider-1', type: 'divider' },
     { id: 'github', name: 'GitHub', icon: Github, type: 'external', url: 'https://github.com/tiwariaayu' },
     { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, type: 'external', url: 'https://www.linkedin.com/in/ayushman-037379264/' },
-    { id: 'twitter', name: 'X', icon: Twitter, type: 'external', url: 'https://x.com/tiw_ari_ayu' },
+    { id: 'twitter', name: 'X', icon: TwitterXIcon, type: 'external', url: 'https://x.com/tiw_ari_ayu' },
     { id: 'divider-2', type: 'divider' },
     { id: 'theme', name: 'Theme', icon: Sun, type: 'action' },
 ];
 
 export default function FloatingDock() {
     const router = useRouter();
+    const pathname = usePathname();
     const [activeSection, setActiveSection] = useState('intro');
     const [hoveredId, setHoveredId] = useState(null);
     const [theme, setTheme] = useState('dark');
@@ -110,7 +112,9 @@ export default function FloatingDock() {
                         return <div key={link.id} className="shrink-0 bg-foreground/10 w-[1px] h-4 md:h-6 mx-1 md:mx-2" />;
                     }
 
-                    const isActive = activeSection === link.id;
+                    const isActive = (link.url && pathname === link.url) ||
+                        (pathname === '/' && activeSection === link.id);
+
                     let Icon = link.icon;
 
                     if (link.id === 'theme') {
