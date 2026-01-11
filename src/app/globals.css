@@ -330,3 +330,8 @@ a {
   /* Hover Effects */
   @apply hover:bg-accent hover:text-[#e9204f] hover:shadow-accent/25 hover:-translate-y-1;
 }
+
+/* Light Theme Override for Project Button */
+:is(.light *) .project-button {
+  @apply hover:bg-[#e9204f] hover:text-white;
+}

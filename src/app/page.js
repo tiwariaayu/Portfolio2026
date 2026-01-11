@@ -66,7 +66,7 @@ export default function Home() {
     mouseY.set(e.clientY - rect.top);
   };
 
-  const spotlightMask = useMotionTemplate`radial-gradient(circle 50px at ${smoothX}px ${smoothY}px, black 30%, transparent 100%)`;
+  const spotlightMask = useMotionTemplate`radial-gradient(circle 80px at ${smoothX}px ${smoothY}px, black 30%, transparent 100%)`;
 
   return (
     <main className="min-h-screen bg-background text-foreground relative flex justify-center selection:bg-accent/30 selection:text-accent-foreground">
