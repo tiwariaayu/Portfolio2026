@@ -24,9 +24,9 @@ import imgKrishak2 from "../assets/images/krishak2.jpg";
 import imgNationalSeminar from "../assets/images/national_seminar.jpg";
 import imgSeminar from "../assets/images/seminar.jpg";
 import imgSeminar2 from "../assets/images/semnar2.jpg";
-import inkslate from "../assets/ProjectImages/inkslate.png";
-import emsdemo from "../assets/ProjectImages/emsdemo.png";
-import ybor from "../assets/ProjectImages/ybor.png";
+import inkslate from "../assets/Projectimages/inkslate.png";
+import emsdemo from "../assets/Projectimages/emsdemo.png";
+import ybor from "../assets/Projectimages/ybor.png";
 
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState(null);
