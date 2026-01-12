@@ -33,8 +33,7 @@ const syne = Syne({
 });
 
 export const metadata = {
-  title: "I Code",
-  description: "Modern professional portfolio built with Next.js 15",
+  title: "Yep i can,Code",
 };
 
 export default function RootLayout({ children }) {
