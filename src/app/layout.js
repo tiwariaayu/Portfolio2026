@@ -33,7 +33,7 @@ const syne = Syne({
 });
 
 export const metadata = {
-  title: "Ayu's Portfolio 2026",
+  title: "I Code",
   description: "Modern professional portfolio built with Next.js 15",
 };
 
