@@ -182,7 +182,8 @@ export default function Home() {
                         fill
                         className="object-cover grayscale"
                         placeholder="blur"
-                        sizes="(max-width: 768px) 100px, 150px"
+                        sizes="(max-width: 768px) 100vw, 600px"
+                        quality={100}
                         priority
                         draggable={false}
                       />
@@ -203,7 +204,8 @@ export default function Home() {
                         fill
                         className="object-cover"
                         placeholder="blur"
-                        sizes="(max-width: 768px) 100px, 150px"
+                        sizes="(max-width: 768px) 100vw, 600px"
+                        quality={100}
                         priority
                         draggable={false}
                       />
