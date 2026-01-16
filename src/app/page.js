@@ -150,8 +150,8 @@ export default function Home() {
               <span className="text-accent font-mono text-xs font-bold uppercase tracking-[0.4em] pl-6 py-2">Introduction</span>
             </StaggerItem>
             <StaggerItem>
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-12 md:gap-20 mt-8">
-                <h1 className="text-5xl md:text-8xl font-semibold tracking-tighter leading-none whitespace-nowrap">
+              <div className="flex flex-row items-center justify-between gap-4 md:gap-20 mt-8">
+                <h1 className="text-3xl md:text-8xl font-semibold tracking-tighter leading-none md:whitespace-nowrap">
                   Hey, I'm Ayushman
                 </h1>
 

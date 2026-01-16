@@ -68,7 +68,7 @@ export default function FloatingDock() {
         });
 
         return () => observer.disconnect();
-    }, []);
+    }, [pathname]);
 
     const toggleTheme = () => {
         const newTheme = theme === 'dark' ? 'light' : 'dark';
