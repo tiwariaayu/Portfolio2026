@@ -1,6 +1,7 @@
 import { Instrument_Serif, Space_Mono, Hanken_Grotesk, Outfit, Syne } from "next/font/google";
 import "./globals.css";
 import FloatingDock from "@/components/FloatingDock";
+import { Analytics } from "@vercel/analytics/next";
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
@@ -44,6 +45,7 @@ export default function RootLayout({ children }) {
       >
         <FloatingDock />
         {children}
+        <Analytics />
       </body>
     </html>
   );
