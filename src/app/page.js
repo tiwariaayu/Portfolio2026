@@ -449,7 +449,7 @@ export default function Home() {
                 <div className="relative pl-8 md:pl-0">
                   {/* Timeline Line (Desktop) */}
                   <div className="hidden md:block absolute left-[120px] top-0 bottom-0 w-px bg-border/30">
-                    <div className="absolute top-6 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-background border-2 border-accent z-10 shadow-[0_0_0_4px_rgba(0,0,0,1)]" />
+                    <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-background border-2 border-accent z-10 shadow-[0_0_0_4px_rgba(0,0,0,1)]" />
                   </div>
 
                   <div className="md:flex gap-6 group">

@@ -354,7 +354,7 @@ a {
   padding: 0;
   font-size: inherit;
   font-family: inherit;
-  width: 11rem;
+  width: 8rem;
   height: auto;
 }
 
@@ -363,8 +363,8 @@ a {
   position: relative;
   display: block;
   margin: 0;
-  width: 3rem;
-  height: 3rem;
+  width: 2.25rem;
+  height: 2.25rem;
   background: #fff;
   /* Dark mode optimized: White circle */
   border-radius: 1.625rem;
@@ -376,8 +376,8 @@ a {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1rem;
+  height: 1rem;
   color: #000;
   /* Icon color inside white circle */
 }
@@ -406,19 +406,19 @@ a {
 .fancy-button .button-text {
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   position: absolute;
-  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
   left: 0;
   right: 0;
-  bottom: 0;
-  padding: 0.75rem 0;
-  margin: 0 0 0 1.85rem;
+  padding: 0;
+  margin: 0 0 0 2.5rem;
   color: #fff;
   /* Rest state text color (white on dark background) */
   font-weight: 700;
-  line-height: 1.6;
+  line-height: 1;
   text-align: center;
   text-transform: uppercase;
-  font-size: 0.8rem;
+  font-size: 1rem;
   letter-spacing: 0.05em;
 }
 
@@ -435,4 +435,25 @@ a {
 .fancy-button:hover .button-text {
   opacity: 0;
   /* Hide text on hover, show only icon */
+}
+
+/* Light Mode Override for Fancy Button */
+:is(.light *) .fancy-button .button-text {
+  color: #000;
+  /* Black text in light mode */
+}
+
+:is(.light *) .fancy-button .circle {
+  background: #000;
+  /* Black circle in light mode */
+}
+
+:is(.light *) .fancy-button .icon {
+  color: #fff;
+  /* White icon in light mode */
+}
+
+:is(.light *) .fancy-button:hover .circle {
+  background-color: #8957e5;
+  /* Purple on hover in light mode */
 }
