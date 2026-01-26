@@ -62,7 +62,7 @@ export default function FloatingDock() {
             { threshold: 0.5 }
         );
 
-        ['intro', 'work', 'experience', 'achievements'].forEach((id) => {
+        ['intro', 'work', 'experience', 'achievements', 'skills', 'os-contribution'].forEach((id) => {
             const el = document.getElementById(id);
             if (el) observer.observe(el);
         });
