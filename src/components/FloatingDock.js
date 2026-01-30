@@ -138,7 +138,7 @@ export default function FloatingDock() {
                                     whileHover={{ scale: 1.2, rotate: 5 }}
                                     whileTap={{ scale: 0.9 }}
                                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                                    className="flex items-center justify-center"
+                                    className="flex items-center justify-center floating-dock"
                                 >
                                     <Icon className="w-4 h-4 md:w-[18px] md:h-[18px]" strokeWidth={isActive ? 2.5 : 2} />
                                 </motion.div>
