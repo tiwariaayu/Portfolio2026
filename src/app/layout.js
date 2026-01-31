@@ -1,4 +1,4 @@
-import { Instrument_Serif, Space_Mono, Hanken_Grotesk, Outfit, Syne } from "next/font/google";
+import { Instrument_Serif, Space_Mono, Hanken_Grotesk, Outfit, Syne, Caveat } from "next/font/google";
 import "./globals.css";
 import FloatingDock from "@/components/FloatingDock";
 import { Analytics } from "@vercel/analytics/next";
@@ -33,6 +33,12 @@ const syne = Syne({
   weight: ["400", "500", "600", "700", "800"],
 });
 
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
 export const metadata = {
   title: "Yep i can,Code",
 };
@@ -41,7 +47,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${instrumentSerif.variable} ${spaceMono.variable} ${hankenGrotesk.variable} ${outfit.variable} ${syne.variable} antialiased`}
+        className={`${instrumentSerif.variable} ${spaceMono.variable} ${hankenGrotesk.variable} ${outfit.variable} ${syne.variable} ${caveat.variable} antialiased`}
       >
         <FloatingDock />
         {children}

@@ -33,7 +33,6 @@ export default function FloatingDock() {
         const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
 
         // 3. Determine effective theme
-        // If saved exists, use it. Else if system is light, use light. Else dark.
         let effectiveTheme = 'dark';
         if (savedTheme) {
             effectiveTheme = savedTheme;
@@ -41,6 +40,11 @@ export default function FloatingDock() {
             effectiveTheme = 'light';
         }
 
+        // Avoid setting state if it matches to prevent effect loops/warnings
+        // We use a functional update to check against current state if needed,
+        // but here we depend on 'theme' state variable which is in dependency array? 
+        // No, 'theme' is NOT in dependency array.
+        // We should just set it once on mount.
         setTheme(effectiveTheme);
 
         // 4. Apply to DOM
@@ -49,8 +53,11 @@ export default function FloatingDock() {
         } else {
             document.documentElement.classList.remove('light');
         }
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []); // Run once on mount
 
-        // Scroll Spy Logic
+    useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -70,19 +77,56 @@ export default function FloatingDock() {
         return () => observer.disconnect();
     }, [pathname]);
 
-    const toggleTheme = () => {
-        const newTheme = theme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
-        localStorage.setItem('theme', newTheme);
+    const toggleTheme = (e) => {
+        const toggle = () => {
+            const newTheme = theme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
 
-        if (newTheme === 'light') {
-            document.documentElement.classList.add('light');
-        } else {
-            document.documentElement.classList.remove('light');
+            if (newTheme === 'light') {
+                document.documentElement.classList.add('light');
+            } else {
+                document.documentElement.classList.remove('light');
+            }
+        };
+
+        if (!document.startViewTransition) {
+            toggle();
+            return;
         }
+
+        const x = e?.clientX ?? window.innerWidth / 2;
+        const y = e?.clientY ?? window.innerHeight / 2;
+        const endRadius = Math.hypot(
+            Math.max(x, window.innerWidth - x),
+            Math.max(y, window.innerHeight - y)
+        );
+
+        const transition = document.startViewTransition(toggle);
+
+        transition.ready.then(() => {
+            const clipPath = [
+                `circle(0px at ${x}px ${y}px)`,
+                `circle(${endRadius}px at ${x}px ${y}px)`,
+            ];
+
+            document.documentElement.animate(
+                {
+                    clipPath: [
+                        `circle(0px at ${x}px ${y}px)`,
+                        `circle(${endRadius}px at ${x}px ${y}px)`,
+                    ],
+                },
+                {
+                    duration: 150,
+                    easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+                    pseudoElement: '::view-transition-new(root)',
+                }
+            );
+        });
     };
 
-    const handleClick = (link) => {
+    const handleClick = (link, e) => {
         if (link.type === 'scroll') {
             const element = document.getElementById(link.id);
             if (element) {
@@ -96,7 +140,7 @@ export default function FloatingDock() {
         } else if (link.type === 'external') {
             window.open(link.url, '_blank');
         } else if (link.type === 'action' && link.id === 'theme') {
-            toggleTheme();
+            toggleTheme(e);
         }
     };
 
@@ -126,7 +170,7 @@ export default function FloatingDock() {
                             <button
                                 onMouseEnter={() => setHoveredId(link.id)}
                                 onMouseLeave={() => setHoveredId(null)}
-                                onClick={() => handleClick(link)}
+                                onClick={(e) => handleClick(link, e)}
                                 className={cn(
                                     "flex items-center justify-center rounded-full transition-all duration-300 relative group size-8 md:size-10",
                                     isActive
