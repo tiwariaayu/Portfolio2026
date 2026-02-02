@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import GmailIcon from "@/components/ui/gmail-icon";
 import TwitterXIcon from "@/components/ui/twitter-x-icon";
-
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 // Import images (Copied from src/app/page.js)
 // Assuming paths are relative to this file, we need to adjust ../assets to ../../assets
@@ -62,6 +63,14 @@ export default function ProjectsPage() {
 
             {/* Main Content */}
             <div className="w-full max-w-5xl px-6 md:px-12 py-32">
+                <Link 
+                    href="/" 
+                    className="inline-flex items-center gap-2 text-sm text-foreground/50 hover:text-foreground transition-colors mb-12 group"
+                >
+                    <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                    <span className="font-mono uppercase tracking-wider">Back to Home</span>
+                </Link>
+
                 <div className="flex flex-col items-center mb-24 space-y-4">
                     <motion.p
                         initial={{ opacity: 0, y: -10 }}

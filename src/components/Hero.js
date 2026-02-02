@@ -12,6 +12,7 @@ import Image from "next/image";
 import { StaggerContainer, StaggerItem } from "@/components/ScrollReveal";
 import imgFace from "../assets/images/facecutouut.jpg";
 import imgFace2 from "../assets/images/facecutout2.jpeg";
+import confetti from "canvas-confetti";
 
 export default function Hero() {
   const mouseX = useMotionValue(0);
@@ -31,6 +32,24 @@ export default function Hero() {
   };
 
   const spotlightMask = useMotionTemplate`radial-gradient(circle 80px at ${smoothX}px ${smoothY}px, black 30%, transparent 100%)`;
+
+
+  const handleConfetti = (e) => {
+    e.stopPropagation();
+    
+    // Fire confetti from the click coordinates
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (rect.left + rect.width / 2) / window.innerWidth;
+    const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+    confetti({
+      origin: { x, y },
+      particleCount: 100,
+      spread: 70,
+      colors: ['#e9204f', '#ffffff', '#000000'],
+      zIndex: 9999,
+    });
+  };
 
   return (
     <section id="intro" className="pt-20 space-y-8 mb-32">
@@ -218,8 +237,10 @@ export default function Hero() {
           >
             A{" "}
             <motion.span
+              onClick={handleConfetti}
               whileHover={{ scale: 1.05, y: -2 }}
-              className="relative inline-block px-2.5 py-1 rounded-md bg-accent/5 border border-accent/20 text-accent font-medium transition-all duration-300 hover:bg-accent/10 hover:border-accent/40 cursor-default group"
+              whileTap={{ scale: 0.95 }}
+              className="relative inline-block px-2.5 py-1 rounded-md bg-accent/5 border border-accent/20 text-accent font-medium transition-all duration-300 hover:bg-accent/10 hover:border-accent/40 cursor-pointer group select-none"
               style={{ fontFamily: "var(--font-instrument-serif)" }}
             >
               <span className="absolute -inset-0.5 rounded-md bg-accent/0 group-hover:bg-accent/10 blur-sm transition-all duration-300 -z-10"></span>

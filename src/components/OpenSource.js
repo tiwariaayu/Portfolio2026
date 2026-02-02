@@ -2,7 +2,8 @@
 
 import { Reveal } from "@/components/ScrollReveal";
 import Image from "next/image";
-import { GitMerge, Globe, Eye } from "lucide-react";
+import Link from "next/link";
+import { GitMerge, Globe, Eye, ArrowRight } from "lucide-react";
 import remotionLogo from "../assets/images/remotion-logo.png";
 
 export default function OpenSource() {
@@ -120,6 +121,12 @@ export default function OpenSource() {
             </div>
           </Reveal>
         ))}
+
+        <div className="flex justify-center mt-16">
+          <Link href="/open-source" className="project-button">
+            View Full Archive
+          </Link>
+        </div>
       </div>
     </section>
   );
