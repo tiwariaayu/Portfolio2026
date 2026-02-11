@@ -71,7 +71,7 @@ export const metadata = {
     siteName: "Ayushman Portfolio",
     images: [
       {
-        url: "https://tiwariayu.space/opengraph-image.jpg",
+        url: "/opengraph-image.jpg",
         width: 1200,
         height: 630,
         alt: "Ayushman Portfolio",
@@ -86,7 +86,7 @@ export const metadata = {
     description:
       "Explore the portfolio of Ayushman, a Full Stack Developer specializing in building digital experiences.",
     creator: "@tiwariayu",
-    images: ["https://tiwariayu.space/twitter-image.jpg"],
+    images: ["/twitter-image.jpg"],
   },
   alternates: {
     canonical: "/",
