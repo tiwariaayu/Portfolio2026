@@ -16,15 +16,19 @@ export default function ProjectItem({ project, index }) {
             className="flex flex-col md:flex-row gap-8 md:gap-12 items-stretch group py-8 px-6 md:p-10 border border-foreground/10 rounded-3xl hover:border-accent/30 transition-colors duration-500"
         >
             {/* Left: Image */}
-            <div className="w-full md:w-1/2 relative aspect-video rounded-2xl overflow-hidden shadow-lg">
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className={`object-${project.imageFit || 'cover'} hover:scale-105 transition-transform duration-700`}
-                    placeholder="blur"
-                />
+            <div className="w-full md:w-1/2 relative aspect-video rounded-2xl overflow-hidden shadow-lg group/image-container smooth-zoom-container">
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all duration-700 z-10 mix-blend-multiply" />
+                <div className="absolute inset-0 smooth-zoom-image">
+                    <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className={`object-${project.imageFit || 'cover'}`}
+                        placeholder="blur"
+                    />
+                </div>
+                {/* Subtle shine effect overlay */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-accent/0 via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 z-20 pointer-events-none" />
             </div>
 
             {/* Right: Info */}

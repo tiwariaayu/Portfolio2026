@@ -139,13 +139,15 @@ export default function OpenSourcePage() {
                     </Marquee>
                 </div>
 
-                <div className="w-full h-[400px] rounded-3xl overflow-hidden border border-white/10 relative group">
-                    <Image
-                        src={banner}
-                        alt="Open Source Collaboration"
-                        fill
-                        className="object-cover transition-all duration-[7000ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-110 group-hover:rotate-1 group-hover:blur-[2px]"
-                    />
+                <div className="w-full h-[400px] rounded-3xl overflow-hidden border border-white/10 relative group smooth-zoom-container">
+                    <div className="absolute inset-0 smooth-zoom-image">
+                        <Image
+                            src={banner}
+                            alt="Open Source Collaboration"
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
                     {/* Gradient overlay for readability on the right side */}
                     <div className="absolute inset-0 bg-gradient-to-l from-black/90 via-black/50 to-transparent" />
 

@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import inkslate from "../assets/Projectimages/inkslate.png";
 import emsdemo from "../assets/Projectimages/emsdemo.png";
-import ybor from "../assets/Projectimages/ybor.png";
+import vibefix from "../assets/images/vibefix.jpg";
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -16,6 +16,16 @@ export default function Projects() {
   const projects = [
     {
       id: "01",
+      title: "VibeFix",
+      subtitle: "Deep-Tech Audit Tool",
+      stacks: ["AI", "Next.js", "GitHub API"],
+      desc: "Detect and Refactor Fragile AI-Generated Code Automatically. VibeFix scans your codebase, detects LLM-generated patterns, and provides production-ready refactors. Includes PR Guardian and PR Compare for automated GitHub Pull Request intelligence.",
+      github: "Private",
+      live: "https://vibefix.site",
+      image: vibefix
+    },
+    {
+      id: "02",
       title: "Inkslate",
       subtitle: "Resume & Portfolio Platform",
       stacks: ["Next.js", "Supabase"],
@@ -25,7 +35,7 @@ export default function Projects() {
       image: inkslate
     },
     {
-      id: "02",
+      id: "03",
       title: "EMS Demo",
       subtitle: "Employee Management Dashboard",
       stacks: ["Next.js", "Supabase"],
@@ -34,16 +44,6 @@ export default function Projects() {
       live: "https://emsdemobyayu.netlify.app/",
       image: emsdemo,
       imageFit: "fill"
-    },
-    {
-      id: "03",
-      title: "Ybor",
-      subtitle: "Marketing-Agency",
-      stacks: ["Next.js"],
-      desc: "A comprehensive digital marketing agency platform featuring dynamic service showcases, lead generation tools, and a modern, high-converting design aesthetic.",
-      github: "Private",
-      live: "https://ybor.netlify.app/",
-      image: ybor
     }
   ];
 
@@ -108,9 +108,9 @@ export default function Projects() {
                 {project.live && project.live !== "#" && (
                   <div
                     onClick={() => setSelectedProject(project)}
-                    className="rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm w-full shadow-2xl cursor-pointer hover:border-accent/40 transition-colors duration-300 aspect-video relative group"
+                    className="rounded-2xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm w-full shadow-2xl cursor-pointer hover:border-accent/40 transition-all duration-700 ease-in-out aspect-video relative group smooth-zoom-container"
                   >
-                    <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
+                    <div className="absolute inset-0 smooth-zoom-image">
                       <Image
                         src={project.image}
                         alt={`${project.title} Preview`}
@@ -119,6 +119,8 @@ export default function Projects() {
                         placeholder="blur"
                       />
                     </div>
+                    {/* Subtle Overlay on Hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   </div>
                 )}
               </div>

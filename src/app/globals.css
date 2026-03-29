@@ -128,6 +128,21 @@ body {
 }
 
 /* Noise Texture */
+/* High-End Zoom Utility */
+.smooth-zoom-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.smooth-zoom-image {
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  will-change: transform;
+}
+
+.group:hover .smooth-zoom-image {
+  transform: scale(1.15);
+}
+
 body::before {
   content: "";
   position: fixed;

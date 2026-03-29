@@ -13,14 +13,23 @@ import Link from "next/link";
 // Assuming paths are relative to this file, we need to adjust ../assets to ../../assets
 import inkslate from "../../assets/Projectimages/inkslate.png";
 import emsdemo from "../../assets/Projectimages/emsdemo.png";
-
-import ybor from "../../assets/Projectimages/ybor.png";
+import vibefix from "../../assets/images/vibefix.jpg";
 import thor from "../../assets/images/Thor.jpg";
 
 // Additional projects can be added here
 const projects = [
     {
         id: "01",
+        title: "VibeFix",
+        subtitle: "Deep-Tech Audit Tool",
+        stacks: ["AI", "Next.js", "GitHub API"],
+        desc: "Detect and Refactor Fragile AI-Generated Code Automatically. VibeFix scans your codebase, detects LLM-generated patterns, and provides production-ready refactors. Includes PR Guardian and PR Compare for automated GitHub Pull Request intelligence.",
+        github: "Private",
+        live: "https://vibefix.site",
+        image: vibefix
+    },
+    {
+        id: "02",
         title: "Inkslate",
         subtitle: "Resume & Portfolio Platform",
         stacks: ["Next.js", "Supabase"],
@@ -30,7 +39,7 @@ const projects = [
         image: inkslate
     },
     {
-        id: "02",
+        id: "03",
         title: "EMS Demo",
         subtitle: "Employee Management Dashboard",
         stacks: ["Next.js", "Supabase"],
@@ -39,18 +48,9 @@ const projects = [
         live: "https://emsdemobyayu.netlify.app/",
         image: emsdemo,
         imageFit: "fill"
-    },
-    {
-        id: "03",
-        title: "Ybor",
-        subtitle: "Marketing-Agency",
-        stacks: ["Next.js"],
-        desc: "A comprehensive digital marketing agency platform featuring dynamic service showcases, lead generation tools, and a modern, high-converting design aesthetic.",
-        github: "Private",
-        live: "https://ybor.netlify.app/",
-        image: ybor
     }
 ];
+
 
 export default function ProjectsPage() {
     return (

@@ -66,14 +66,16 @@ export default function OpenSource() {
                       {/* Left Column: Content */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="relative w-6 h-6 rounded-md overflow-hidden shrink-0">
-                            <Image
-                              src={remotionLogo}
-                              alt="Remotion"
-                              fill
-                              className="object-cover object-left"
-                              sizes="24px"
-                            />
+                          <div className="relative w-6 h-6 rounded-md overflow-hidden shrink-0 smooth-zoom-container">
+                            <div className="absolute inset-0 smooth-zoom-image">
+                              <Image
+                                src={remotionLogo}
+                                alt="Remotion"
+                                fill
+                                className="object-cover object-left"
+                                sizes="24px"
+                              />
+                            </div>
                           </div>
                           <span className="text-foreground/80 font-medium">{item.repo}</span>
                         </div>
