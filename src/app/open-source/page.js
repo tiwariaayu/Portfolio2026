@@ -1,64 +1,38 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import VerticalLines from "@/components/VerticalLines";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import GmailIcon from "@/components/ui/gmail-icon";
 import TwitterXIcon from "@/components/ui/twitter-x-icon";
-import CrawlChatIcon from "@/components/ui/crawlchat-icon";
 import Marquee from "@/components/ui/marquee";
 import { Reveal } from "@/components/ScrollReveal";
 import { GitMerge, Globe, Eye, Github, ChevronDown, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 // Import images
-import thor from "../../assets/images/Thor.jpg";
 import banner from "../../assets/images/banner.jpeg";
 
-const osContributions = [
-    {
-      year: "2024",
-      repo: "Remotion",
-      title: "New CLI Skills Command",
-      tags: ["Performance", "CLI"],
-      points: [
-        "Implemented `npx remotion skills` command",
-        "Enables managing skills via CLI",
-        "Improved DX for contributors"
-      ],
-      status: "Merged",
-      link: "https://github.com/tiwariaayu/remotion/tree/%236364"
-    },
-    {
-      year: "2024",
-      repo: "Remotion",
-      title: "Support for Mediabunny and Zod",
-      tags: ["Templates", "Zod", "DX"],
-      points: [
-        "Added support for Mediabunny/Zod templates",
-        "Enhanced `npx remotion add` command",
-        "Expanded template ecosystem"
-      ],
-      status: "Merged",
-      link: "https://github.com/remotion-dev/remotion/pull/6365"
-    },
-    {
-      year: "2025",
-      repo: "CrawlChat",
-      title: "Move KB Update Cron to Source Sync",
-      tags: ["Cron", "Sync", "Refactor"],
-      points: [
-        "Moved knowledge base update cron to source sync",
-        "Optimized synchronization process for better reliability",
-        "Improved system architectural consistency"
-      ],
-      status: "Merged",
-      link: "https://github.com/crawlchat/crawlchat/pull/416"
-    }
-];
-
 export default function OpenSourcePage() {
+    const [osContributions, setOsContributions] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchAllContributions() {
+            try {
+                const response = await fetch('/api/github/contributions');
+                if (!response.ok) throw new Error('Failed to fetch');
+                const data = await response.json();
+                setOsContributions(data);
+            } catch (error) {
+                console.error('Error fetching contributions:', error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchAllContributions();
+    }, []);
     return (
         <main className="min-h-screen bg-background text-foreground flex justify-center">
 
@@ -100,9 +74,16 @@ export default function OpenSourcePage() {
                 </div>
 
                 <div className="w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10 mb-4!">
-                    {osContributions.map((item, i) => (
-                        <AccordionItem key={i} item={item} index={i} />
-                    ))}
+                    {loading ? (
+                        <div className="col-span-full py-20 flex flex-col items-center justify-center space-y-4">
+                            <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-accent"></div>
+                            <p className="text-foreground/50 font-mono text-sm capitalize tracking-widest">Compiling contributions...</p>
+                        </div>
+                    ) : (
+                        osContributions.map((item, i) => (
+                            <AccordionItem key={item.id || i} item={item} index={i} />
+                        ))
+                    )}
                 </div>
 
                 <div className="mt-1! mb-5! w-full overflow-hidden">
@@ -209,18 +190,14 @@ function AccordionItem({ item, index }) {
                 <div className="flex items-start gap-5 relative z-10 w-full p-[10px]!">
                     {/* Repo Icon */}
                     <div className="w-12 h-12 rounded-xl bg-black/40 [.light_&]:bg-black/5 border border-white/10 [.light_&]:border-black/5 flex items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform duration-500">
-                         {item.repo === 'Remotion' ? (
-                            <div className="relative w-7 h-7 rounded overflow-hidden">
-                                <Image 
-                                    src="https://avatars.githubusercontent.com/u/85344006?s=200&v=4" 
-                                    alt="Remotion" 
-                                    fill 
-                                    className="object-cover" 
-                                />
-                            </div>
-                         ) : item.repo === 'CrawlChat' ? (
-                            <CrawlChatIcon className="w-7 h-7 text-foreground/80" />
-                         ) : <Github className="w-6 h-6 text-foreground/80" />}
+                        <div className="relative w-7 h-7 rounded overflow-hidden">
+                            <Image 
+                                src={item.logo} 
+                                alt={item.repo} 
+                                fill 
+                                className="object-cover" 
+                            />
+                        </div>
                     </div>
 
                     <div className="space-y-2 flex-grow">
@@ -246,7 +223,7 @@ function AccordionItem({ item, index }) {
                         </div>
                         
                         <div className="flex items-center flex-wrap gap-2 text-sm text-foreground/50 font-mono">
-                           {item.tags.map((tag, i) => (
+                           {(item.tags || [item.org]).map((tag, i) => (
                                <span key={i} className="px-2.5 py-1 rounded-md text-xs text-[#e9204f]">
                                    {tag}
                                </span>
@@ -292,7 +269,7 @@ function AccordionItem({ item, index }) {
                                         <span>View PR</span>
                                     </a>
                                     <a
-                                        href="https://github.com/remotion-dev/remotion"
+                                        href={`https://github.com/${item.org}/${item.repo}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center gap-2 px-4! py-2! rounded-lg bg-white/5 hover:bg-white/10 [.light_&]:bg-black/5 [.light_&]:hover:bg-black/10 text-foreground/60 hover:text-white [.light_&]:hover:text-black border border-white/5 hover:border-white/10 [.light_&]:border-black/5 [.light_&]:hover:border-black/10 transition-all text-xs font-mono tracking-wide uppercase"

@@ -1,38 +1,54 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { Reveal } from "@/components/ScrollReveal";
 import Image from "next/image";
 import Link from "next/link";
-import { GitMerge, Globe, Eye, ArrowRight } from "lucide-react";
-import remotionLogo from "../assets/images/remotion-logo.png";
+import { GitMerge, Globe, Eye } from "lucide-react";
 
-export default function OpenSource() {
-  const osContributions = [
-    {
-      year: "",
-      repo: "Remotion",
-      title: "New CLI Skills Command",
-      points: [
-        "Implemented `npx remotion skills` command",
-        "Enables managing skills via CLI",
-        "Improved DX for contributors"
-      ],
-      status: "Merged",
-      link: "https://github.com/tiwariaayu/remotion/tree/%236364"
-    },
-    {
-      year: "",
-      repo: "Remotion",
-      title: "Support for Mediabunny and Zod",
-      points: [
-        "Added support for Mediabunny/Zod templates",
-        "Enhanced `npx remotion add` command",
-        "Expanded template ecosystem"
-      ],
-      status: "Merged",
-      link: "https://github.com/remotion-dev/remotion/pull/6365"
+export default function OpenSource({ limit }) {
+  const [osContributions, setOsContributions] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchContributions() {
+      try {
+        const response = await fetch('/api/github/contributions');
+        if (!response.ok) throw new Error('Failed to fetch');
+        const data = await response.json();
+        // If limit is provided, slice the data
+        const displayedData = limit ? data.slice(0, limit) : data;
+        setOsContributions(displayedData);
+      } catch (error) {
+        console.error('Error fetching contributions:', error);
+      } finally {
+        setLoading(false);
+      }
     }
-  ];
+
+    fetchContributions();
+  }, [limit]);
+
+  if (loading) {
+    return (
+      <section id="os-contribution" className="space-y-16 py-12 mt-20 mb-48">
+        <div className="flex flex-col items-center justify-center text-center mb-20 w-full">
+          <h2 className="text-4xl md:text-5xl font-medium tracking-tight" style={{ fontFamily: 'var(--font-outfit)' }}>OS Contributions</h2>
+        </div>
+        <div className="max-w-5xl mx-auto px-4 flex justify-center py-20">
+          <div className="animate-pulse flex flex-col items-center space-y-4">
+             <div className="w-12 h-12 bg-accent/20 rounded-full"></div>
+             <div className="h-4 w-48 bg-accent/10 rounded"></div>
+             <p className="text-accent/50 font-mono text-sm">Fetching contributions...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (osContributions.length === 0) {
+    return null; // Or show a default message
+  }
 
   return (
     <section id="os-contribution" className="space-y-16 py-12 mt-20 mb-48">
@@ -69,8 +85,8 @@ export default function OpenSource() {
                           <div className="relative w-6 h-6 rounded-md overflow-hidden shrink-0 smooth-zoom-container">
                             <div className="absolute inset-0 smooth-zoom-image">
                               <Image
-                                src={remotionLogo}
-                                alt="Remotion"
+                                src={item.logo}
+                                alt={item.repo}
                                 fill
                                 className="object-cover object-left"
                                 sizes="24px"
@@ -106,9 +122,9 @@ export default function OpenSource() {
                           <span className="button-text">{item.status}</span>
                         </a>
 
-                        <a href="https://www.remotion.dev/" target="_blank" rel="noopener noreferrer" className="fancy-button">
+                        <a href={`https://github.com/${item.org}/${item.repo}`} target="_blank" rel="noopener noreferrer" className="fancy-button">
                           <span className="circle" aria-hidden="true"><Globe className="icon" /></span>
-                          <span className="button-text">Website</span>
+                          <span className="button-text">Repo</span>
                         </a>
 
                         <a href={item.link} target="_blank" rel="noopener noreferrer" className="fancy-button">

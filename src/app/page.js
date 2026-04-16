@@ -100,7 +100,7 @@ export default function Home() {
 
         <SectionDivider label="OS_CNTR_BT" style={{ marginTop: '6px' }} />
 
-        <OpenSource />
+        <OpenSource limit={3} />
 
         <SectionDivider label="ARC_WKS_FTR" style={{ marginTop: '6px' }} />
 

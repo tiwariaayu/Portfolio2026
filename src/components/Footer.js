@@ -85,12 +85,12 @@ export default function Footer() {
                     </div>
 
                     <p className="text-foreground/50 text-base md:text-lg max-w-lg mx-auto font-light leading-relaxed">
-                        Let's turn your ideas into reality.
+                        Let&apos;s turn your ideas into reality.
                     </p>
 
                     <h2 className="text-5xl md:text-8xl font-bold tracking-tight leading-[0.9] text-balance pt-8" style={{ fontFamily: 'var(--font-outfit)' }}>
-                        Let's build the <br />
-                        <span className="text-accent italic font-light ml-2" style={{ fontFamily: 'var(--font-instrument-serif)' }}>future</span> together.
+                        Ship faster. <br />
+                        <span className="text-accent italic font-light ml-2" style={{ fontFamily: 'var(--font-instrument-serif)' }}>Fix smarter.</span>
                     </h2>
                 </motion.div>
             </div>

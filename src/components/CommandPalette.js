@@ -92,7 +92,7 @@ export default function CommandPalette() {
                                     ))
                                 ) : (
                                     <div className="p-8 text-center text-foreground/20 italic text-sm">
-                                        No results found for "{query}"
+                                        No results found for &quot;{query}&quot;
                                     </div>
                                 )}
                             </div>

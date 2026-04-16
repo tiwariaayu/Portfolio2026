@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Briefcase, Github, Linkedin, Sun, Moon, Trophy } from 'lucide-react';
+import { Home, Briefcase, Github, Linkedin, Sun, Moon, Trophy, FileDown } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
 import TwitterXIcon from './ui/twitter-x-icon';
 import { cn } from '@/lib/utils';
@@ -14,6 +14,7 @@ const links = [
     { id: 'github', name: 'GitHub', icon: Github, type: 'external', url: 'https://github.com/tiwariaayu' },
     { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, type: 'external', url: 'https://www.linkedin.com/in/ayushman-037379264/' },
     { id: 'twitter', name: 'X', icon: TwitterXIcon, type: 'external', url: 'https://x.com/tiw_ari_ayu' },
+    { id: 'resume', name: 'Resume', icon: FileDown, type: 'external', url: '/Ayushman_developer.pdf' },
     { id: 'divider-2', type: 'divider' },
     { id: 'theme', name: 'Theme', icon: Sun, type: 'action' },
 ];
@@ -45,6 +46,7 @@ export default function FloatingDock() {
         // but here we depend on 'theme' state variable which is in dependency array? 
         // No, 'theme' is NOT in dependency array.
         // We should just set it once on mount.
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setTheme(effectiveTheme);
 
         // 4. Apply to DOM
@@ -54,7 +56,6 @@ export default function FloatingDock() {
             document.documentElement.classList.remove('light');
         }
         
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); // Run once on mount
 
     useEffect(() => {
@@ -188,19 +189,7 @@ export default function FloatingDock() {
                                 </motion.div>
 
 
-                                {/* Tooltip */}
-                                <AnimatePresence>
-                                    {hoveredId === link.id && (
-                                        <motion.div
-                                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                                            animate={{ opacity: 1, y: -50, scale: 1 }}
-                                            exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                            className="absolute left-1/2 -translate-x-1/2 px-6 py-3 rounded-xl bg-foreground text-background text-[10px] font-mono tracking-[0.2em] uppercase pointer-events-none whitespace-nowrap shadow-2xl border border-white/10"
-                                        >
-                                            {link.name}
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
+
                             </button>
                         </div>
                     );
